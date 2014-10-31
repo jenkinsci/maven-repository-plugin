@@ -23,44 +23,70 @@
  */
 package com.nirima.jenkins.repo.project;
 
-import com.google.common.collect.Lists;
-import com.nirima.jenkins.repo.RepositoryElement;
-import com.nirima.jenkins.repo.build.ProjectBuildRepositoryRoot;
-import hudson.model.BuildableItemWithBuildWrappers;
-import com.nirima.jenkins.repo.AbstractRepositoryDirectory;
-import com.nirima.jenkins.repo.RepositoryDirectory;
-
 import java.util.Collection;
 import java.util.List;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
+import com.nirima.jenkins.repo.AbstractRepositoryDirectory;
+import com.nirima.jenkins.repo.RepositoryDirectory;
+import com.nirima.jenkins.repo.RepositoryElement;
+import com.nirima.jenkins.repo.build.ProjectBuildRepositoryRoot;
+
+import hudson.model.BuildableItemWithBuildWrappers;
+import hudson.model.Item;
+import hudson.model.ItemGroup;
+import hudson.model.Run;
+
 public class ProjectElement extends AbstractRepositoryDirectory implements RepositoryDirectory {
 
-    BuildableItemWithBuildWrappers item;
+    private final Item item;
 
-    public ProjectElement(RepositoryDirectory parent, BuildableItemWithBuildWrappers project)
-    {
+    public ProjectElement(final RepositoryDirectory parent, final Item project) {
         super(parent);
-        if( project == null )
+        if (project == null) {
             throw new IllegalArgumentException("project must not be null");
+        }
 
         this.item = project;
     }
 
-    public @Override Collection<? extends RepositoryElement> getChildren() {
+    @Override
+    public Collection<? extends RepositoryElement> getChildren() {
+        if (this.item instanceof BuildableItemWithBuildWrappers) {
+            final BuildableItemWithBuildWrappers bi = (BuildableItemWithBuildWrappers) this.item;
+            final List<RepositoryElement> children = Lists.<RepositoryElement>newArrayList(
+                    new ProjectBuildList(this, bi, ProjectBuildList.Type.SHA1),
+                    new ProjectBuildList(this, bi, ProjectBuildList.Type.Build)
+            );
 
-        List<? extends RepositoryElement> ar =  Lists.newArrayList(
-                new ProjectBuildList(this, item, ProjectBuildList.Type.SHA1),
-                new ProjectBuildList(this, item, ProjectBuildList.Type.Build),
-                new ProjectBuildRepositoryRoot(this, item.asProject().getLastSuccessfulBuild(), "LastSuccessful")
-        );
+            final Run<?, ?> lastSuccessfulBuild = bi.asProject().getLastSuccessfulBuild();
+            if (lastSuccessfulBuild != null) {
+                children.add(new ProjectBuildRepositoryRoot(this, lastSuccessfulBuild, "LastSuccessful"));
+            }
 
-        return ar;
+            return children;
+        }
+        if (this.item instanceof ItemGroup<?>) {
+            final ItemGroup<?> group = (ItemGroup<?>) this.item;
+            return Collections2.transform(group.getItems(), new Function<Item, RepositoryElement>() {
+
+                public RepositoryElement apply(final Item input) {
+                    return new ProjectElement(ProjectElement.this, input);
+                }
+
+            });
+        }
+
+        throw new IllegalStateException("unsupported type [" + this.item.getClass() + "].");
     }
 
     public String getName() {
-       return item.getName();
+        return this.item.getName();
     }
 
+    @Override
     public String getDescription() {
         return "Project " + item.getName();
     }
@@ -69,4 +95,5 @@ public class ProjectElement extends AbstractRepositoryDirectory implements Repos
     public String toString() {
         return "ProjectElement{" + item.getName() + "}";
     }
+
 }

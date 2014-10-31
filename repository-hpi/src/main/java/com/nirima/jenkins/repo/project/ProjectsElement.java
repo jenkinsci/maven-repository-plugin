@@ -23,17 +23,19 @@
  */
 package com.nirima.jenkins.repo.project;
 
+import java.util.Collection;
+import java.util.List;
+
 import com.google.common.base.Function;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import com.nirima.jenkins.repo.AbstractRepositoryDirectory;
-import hudson.model.BuildableItemWithBuildWrappers;
 import com.nirima.jenkins.repo.RepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryElement;
-import jenkins.model.Jenkins;
 
-import java.util.Collection;
-import java.util.List;
+import hudson.model.Item;
+
+import jenkins.model.Jenkins;
 
 public class ProjectsElement extends AbstractRepositoryDirectory implements RepositoryDirectory {
     public ProjectsElement(RepositoryDirectory parent) {
@@ -47,10 +49,10 @@ public class ProjectsElement extends AbstractRepositoryDirectory implements Repo
 
     public Collection<ProjectElement> getChildren() {
 
-        List<ProjectElement> elements = Lists.newArrayList(Iterators.transform(Jenkins.getInstance().getAllItems(BuildableItemWithBuildWrappers.class).iterator(),
-                new Function<BuildableItemWithBuildWrappers,ProjectElement>()
+        List<ProjectElement> elements = Lists.newArrayList(Iterators.transform(Jenkins.getInstance().getItems().iterator(),
+                new Function<Item,ProjectElement>()
                 {
-                    public ProjectElement apply(BuildableItemWithBuildWrappers from) {
+                    public ProjectElement apply(Item from) {
                         return new ProjectElement(ProjectsElement.this, from);
                     }
                 }));
