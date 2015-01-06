@@ -77,10 +77,18 @@ public class RepositoryDefinitionProperty extends BuildWrapper implements Serial
 
             @Override
             public void buildEnvVars(Map<String, String> env) {
-                super.buildEnvVars(env);    //To change body of overridden methods use File | Settings | File Templates.
+                super.buildEnvVars(env);
 
                 try {
-                    RepositoryAction repositoryAction = upstream.getAction(build);
+                    final RepositoryAction repositoryAction = upstream.getAction(build);
+
+                    /* do not add duplicate actions */
+                    for (final RepositoryAction action : build.getActions(repositoryAction.getClass())) {
+                        if (repositoryAction.equals(action)) {
+                            return;
+                        }
+                    }
+
                     build.addAction(repositoryAction);
                     env.put("Jenkins.Repository", repositoryAction.getUrl().toExternalForm());
                     listener.getLogger().println("Setting environment Jenkins.Repository = " + repositoryAction.getUrl().toExternalForm());
