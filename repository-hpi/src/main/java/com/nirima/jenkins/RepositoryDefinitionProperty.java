@@ -24,6 +24,7 @@
 package com.nirima.jenkins;
 
 import com.nirima.jenkins.action.RepositoryAction;
+
 import hudson.Extension;
 import hudson.Launcher;
 import hudson.model.AbstractBuild;
@@ -31,12 +32,14 @@ import hudson.model.AbstractProject;
 import hudson.model.BuildListener;
 import hudson.tasks.BuildWrapper;
 import hudson.tasks.BuildWrapperDescriptor;
+
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.export.ExportedBean;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Map;
 
 @ExportedBean
@@ -73,26 +76,31 @@ public class RepositoryDefinitionProperty extends BuildWrapper implements Serial
 
     @Override
     public Environment setUp(final AbstractBuild build, Launcher launcher, final BuildListener listener) throws IOException, InterruptedException {
+        try {
+            build.addAction(upstream.getAction(build));
+        } catch (final SelectionType.RepositoryDoesNotExistException x) {
+            listener.getLogger().println("You asked for an upstream repository, but it does not exist");
+            throw new RuntimeException(x);
+        }
+
         return new BuildWrapper.Environment() {
 
             @Override
-            public void buildEnvVars(Map<String, String> env) {
-                super.buildEnvVars(env);    //To change body of overridden methods use File | Settings | File Templates.
+            public void buildEnvVars(final Map<String, String> env) {
+                super.buildEnvVars(env);
 
                 try {
-                    RepositoryAction repositoryAction = upstream.getAction(build);
-                    build.addAction(repositoryAction);
-                    env.put("Jenkins.Repository", repositoryAction.getUrl().toExternalForm());
-                    listener.getLogger().println("Setting environment Jenkins.Repository = " + repositoryAction.getUrl().toExternalForm());
-                } catch (SelectionType.RepositoryDoesNotExistException x) {
-                    listener.getLogger().println("You asked for an upstream repository, but it does not exist");
-                    throw new RuntimeException(x);
-                } catch (MalformedURLException e) {
+                    final RepositoryAction repositoryAction = build.getAction(RepositoryAction.class);
+                    final URL repositoryUrl = repositoryAction.getUrl();
+
+                    env.put("Jenkins.Repository", repositoryUrl.toExternalForm());
+                    listener.getLogger().println("Setting environment Jenkins.Repository = " + repositoryUrl);
+                } catch (final MalformedURLException e) {
                     listener.getLogger().println("Problem setting upstream repository URL");
                     throw new RuntimeException(e);
                 }
-
             }
+
         };
     }
 
