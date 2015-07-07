@@ -105,7 +105,7 @@ public class SelectionTypeProject extends SelectionType {
                 Jenkins.getInstance().getAllItems(BuildableItemWithBuildWrappers.class),
                 new Predicate<BuildableItemWithBuildWrappers>() {
                     public boolean apply(BuildableItemWithBuildWrappers buildableItemWithBuildWrappers) {
-                        return buildableItemWithBuildWrappers.getName().equals(project);
+                        return buildableItemWithBuildWrappers.getFullName().equals(project);
                     }
                 });
         return item;
