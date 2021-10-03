@@ -14,7 +14,7 @@
     <description>Repository Project POM</description>
     <url>https://github.com/jenkinsci/maven-repository-plugin</url>
 
-    <version>1.6-SNAPSHOT</version>
+    <version>1.6</version>
     <packaging>pom</packaging>
 
     <ciManagement>
@@ -71,7 +71,7 @@
         <connection>scm:git:git://github.com/${gitHubRepo}.git</connection>
         <developerConnection>scm:git:git@github.com:${gitHubRepo}.git</developerConnection>
         <url>https://github.com/${gitHubRepo}</url>
-        <tag>HEAD</tag>
+        <tag>pom-1.6</tag>
     </scm>
     <modules>
         <module>jenkins-maven-plugin</module>
