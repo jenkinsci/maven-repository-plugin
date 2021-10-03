@@ -50,7 +50,7 @@ public class SelectionTypeUpstream extends SelectionType {
     }
 
     public void setBuild(String buildId) {
-        this.build = build;
+        this.build = buildId;
     }
 
     @Override
