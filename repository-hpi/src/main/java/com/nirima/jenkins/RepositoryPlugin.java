@@ -150,7 +150,7 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
           return;
         }
 
-        if (path.indexOf("..") != -1 || path.length() < 1) {
+        if (path.contains("..") || path.length() < 1) {
             // don't serve anything other than files in the sub directory.
             rsp.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
