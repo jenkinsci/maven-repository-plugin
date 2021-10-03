@@ -101,7 +101,7 @@ public class UpdaterPublisher extends Recorder implements Serializable, SimpleBu
 
     public void execute() throws IOException, InterruptedException {
 
-      Map<String,String> artifacts = new HashMap<String,String>();
+      Map<String,String> artifacts = new HashMap<>();
 
       RepositoryArtifactRecords mar = build.getAction(RepositoryArtifactRecords.class);
       if( mar == null )

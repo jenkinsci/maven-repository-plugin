@@ -15,12 +15,12 @@ import java.util.Map;
  * Created by magnayn on 01/11/15.
  */
 public class RepositoryArtifactRecord implements Serializable {
-  public List<MavenArtifact> attachedArtifacts = new ArrayList<MavenArtifact>();
+  public List<MavenArtifact> attachedArtifacts = new ArrayList<>();
   public MavenArtifact mainArtifact;
   public MavenArtifact pomArtifact;
   public String repositoryUrl;
   public String repositoryId;
-  public Map<MavenArtifact, File> fileMap = new HashMap<MavenArtifact, File>();
+  public Map<MavenArtifact, File> fileMap = new HashMap<>();
 
   public static RepositoryArtifactRecord parse(BufferedReader br) throws IOException {
     // Get the job
@@ -67,7 +67,7 @@ public class RepositoryArtifactRecord implements Serializable {
     String fileName = br.readLine();
     String md5sum = br.readLine();
 
-    List<MavenArtifact> result = new ArrayList<MavenArtifact>();
+    List<MavenArtifact> result = new ArrayList<>();
 
     MavenArtifact a = new MavenArtifact(groupId, artifactId, version, classifier, type, fileName, md5sum);
     fileMap.put(a, new File(file) );

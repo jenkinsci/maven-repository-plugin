@@ -75,7 +75,7 @@ public class DirectoryRepositoryItem extends AbstractRepositoryElement implement
     {
         if( items == null )
         {
-            items = new HashMap<String, RepositoryElement>();
+            items = new HashMap<>();
         }
 
         return items;

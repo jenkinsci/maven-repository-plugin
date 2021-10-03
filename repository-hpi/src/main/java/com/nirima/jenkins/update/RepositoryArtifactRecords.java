@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class RepositoryArtifactRecords implements Action, Serializable {
 
-  public List<RepositoryArtifactRecord> recordList = new ArrayList<RepositoryArtifactRecord>();
+  public List<RepositoryArtifactRecord> recordList = new ArrayList<>();
 
   @Override
   public String getIconFileName() {

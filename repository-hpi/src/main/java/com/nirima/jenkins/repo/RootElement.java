@@ -38,7 +38,7 @@ public class RootElement extends AbstractRepositoryDirectory implements Reposito
 
     public Collection<? extends RepositoryElement> getChildren() {
 
-        Collection<RepositoryElement> children = new ArrayList<RepositoryElement>();
+        Collection<RepositoryElement> children = new ArrayList<>();
 
         // Default set
         children.add( new ProjectsElement(this) );

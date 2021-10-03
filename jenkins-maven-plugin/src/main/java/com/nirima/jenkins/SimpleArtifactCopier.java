@@ -255,7 +255,7 @@ public class SimpleArtifactCopier implements IArtifactCopier {
 
     private List<String> getEntries(byte[] string) throws ParserConfigurationException, IOException, SAXException, TransformerException {
 
-        List<String> items = new ArrayList<String>();
+        List<String> items = new ArrayList<>();
 
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

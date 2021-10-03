@@ -41,7 +41,7 @@ public class MetadataRepositoryItem extends TextRepositoryItem {
     private static final String UFMT_FORMAT_PATTERN = "yyyyMMddHHmmss";
     private Run<?,?> build;
     private String groupId, artifactId, version;
-    private Map<MavenArtifact,ArtifactRepositoryItem> items = new HashMap<MavenArtifact,ArtifactRepositoryItem>();
+    private Map<MavenArtifact,ArtifactRepositoryItem> items = new HashMap<>();
 
     private static String formatDateVersion(Date date, int buildNo) {
         // we used to tack the build number on here, but that causes problems because the build
@@ -111,7 +111,7 @@ public class MetadataRepositoryItem extends TextRepositoryItem {
         // It is possible that "items" contains many entries for the same artifact; we
         // just want the latest.
 
-        Map<String,Entry> entryToBuild = new HashMap<String,Entry>();
+        Map<String,Entry> entryToBuild = new HashMap<>();
 
         for (Map.Entry<MavenArtifact,ArtifactRepositoryItem> entry : items.entrySet()) {
 

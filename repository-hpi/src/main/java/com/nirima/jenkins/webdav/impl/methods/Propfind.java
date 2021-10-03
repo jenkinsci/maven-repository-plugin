@@ -186,7 +186,7 @@ public class Propfind extends MethodBase {
     }
 
     protected ArrayList<DavProperty> getRequiredProperties(XMLStreamReader xpp) throws IOException, XMLStreamException {
-        ArrayList<DavProperty> properties = new ArrayList<DavProperty>();
+        ArrayList<DavProperty> properties = new ArrayList<>();
         String name = xpp.getName().getLocalPart();
         for (int eventType = xpp.next(); !(eventType == XMLStreamConstants.END_ELEMENT && xpp.getName().getLocalPart().equals(name))
                 && eventType != XMLStreamConstants.END_DOCUMENT; eventType = xpp.next()) {

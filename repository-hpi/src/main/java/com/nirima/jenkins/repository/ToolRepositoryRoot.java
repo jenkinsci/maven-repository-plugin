@@ -44,7 +44,7 @@ public class ToolRepositoryRoot extends AbstractRepositoryDirectory implements R
 
     @Override
     public Collection<? extends RepositoryElement> getChildren() {
-        List<RepositoryElement> elements = new ArrayList<RepositoryElement>();
+        List<RepositoryElement> elements = new ArrayList<>();
 
         File file = new File(Jenkins.get().getRootDir(), "repositoryPlugin/tools");
 

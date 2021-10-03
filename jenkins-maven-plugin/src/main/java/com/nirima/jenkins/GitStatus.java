@@ -77,7 +77,7 @@ public class GitStatus {
         }
     }
 
-    private Map<ObjectId, Status> fetched = new HashMap<ObjectId, Status>();
+    private Map<ObjectId, Status> fetched = new HashMap<>();
 
     public Status getStatus(File sourceDirectory) throws IOException {
 

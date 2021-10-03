@@ -42,7 +42,7 @@ public abstract class PopulateOnDemandDirectoryRepositoryItem extends DirectoryR
     @Override
     Map<String, RepositoryElement> getItems() {
         if (items == null) {
-            items = new HashMap<String, RepositoryElement>();
+            items = new HashMap<>();
             getPopulator().populate(this);
         }
         return items;

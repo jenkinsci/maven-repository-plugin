@@ -58,7 +58,7 @@ public class DAVItemSerializer
     public void generateNamedProperties(IDavContext ctxt, IDavItem item, XMLStreamWriter response, ArrayList<DavProperty> properties)
             throws IOException, XMLStreamException
     {
-        ArrayList<DavProperty> missingProperties = new ArrayList<DavProperty>();
+        ArrayList<DavProperty> missingProperties = new ArrayList<>();
         response.writeStartElement("DAV:", "propstat");
         response.writeStartElement("DAV:", "prop");
         for (DavProperty prop : properties)

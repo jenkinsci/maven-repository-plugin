@@ -50,7 +50,7 @@ public class BridgeRepositoryDirectory extends BridgeRepositoryElement<Repositor
     }
 
     public ArrayList<IDavItem> getChildren(IDavContext ctxt) {
-        ArrayList<IDavItem> items = new ArrayList<IDavItem>();
+        ArrayList<IDavItem> items = new ArrayList<>();
 
         for(RepositoryElement e : element.getChildren())
         {

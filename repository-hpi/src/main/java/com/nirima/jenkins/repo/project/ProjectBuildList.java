@@ -94,7 +94,7 @@ public class ProjectBuildList extends AbstractRepositoryDirectory implements Rep
 
         } else {
 
-            Map<String, ProjectBuildRepositoryRoot> children = new HashMap<String, ProjectBuildRepositoryRoot>();
+            Map<String, ProjectBuildRepositoryRoot> children = new HashMap<>();
 
             log.info("Getting builds from {}", item);
 

@@ -223,7 +223,7 @@ public class MethodBase implements IMethod {
 
     protected ArrayList<String> getETags(String name) {
         String value = m_request.getHeader(name);
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         if (value == null) return list;
 
         StringTokenizer tokenizer = new StringTokenizer(value, ",");

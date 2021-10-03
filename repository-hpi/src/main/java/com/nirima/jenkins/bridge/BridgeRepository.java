@@ -108,7 +108,7 @@ public class BridgeRepository implements IDavRepo {
     }
 
     public Collection<IDavItem> getItems(IDavContext ctxt, IDavItem item, int depth) {
-        ArrayList<IDavItem> items = new ArrayList<IDavItem>();
+        ArrayList<IDavItem> items = new ArrayList<>();
         items.add(item);
 
         if (item instanceof IDavCollection)

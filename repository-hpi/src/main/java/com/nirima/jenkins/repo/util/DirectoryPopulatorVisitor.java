@@ -46,7 +46,7 @@ public class DirectoryPopulatorVisitor extends HudsonVisitor {
     DirectoryRepositoryItem root;
     public boolean allowOverwrite;
 
-    protected List<String> listOfProjectNames = new ArrayList<String>();
+    protected List<String> listOfProjectNames = new ArrayList<>();
 
     public DirectoryPopulatorVisitor(DirectoryRepositoryItem root, boolean allowOverwrite)
     {
@@ -113,5 +113,5 @@ public class DirectoryPopulatorVisitor extends HudsonVisitor {
     }
 
     private Map<String,MetadataRepositoryItem> metadata =
-        new HashMap<String,MetadataRepositoryItem>();
+            new HashMap<>();
 }
