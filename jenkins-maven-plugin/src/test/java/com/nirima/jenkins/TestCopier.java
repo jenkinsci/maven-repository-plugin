@@ -1,12 +1,6 @@
 package com.nirima.jenkins;
 
 import junit.framework.TestCase;
-import org.apache.maven.artifact.Artifact;
-import org.apache.maven.artifact.DefaultArtifact;
-
-
-import java.io.File;
-import java.net.URL;
 
 /**
  * Created by IntelliJ IDEA.

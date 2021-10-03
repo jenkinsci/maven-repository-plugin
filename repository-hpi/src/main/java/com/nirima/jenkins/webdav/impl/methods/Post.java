@@ -24,8 +24,6 @@
 package com.nirima.jenkins.webdav.impl.methods;
 
 import com.nirima.jenkins.webdav.interfaces.IDavContext;
-import com.nirima.jenkins.webdav.interfaces.IDavItem;
-import com.nirima.jenkins.webdav.interfaces.IDavRepo;
 import com.nirima.jenkins.webdav.interfaces.MethodException;
 
 /**

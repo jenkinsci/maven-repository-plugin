@@ -25,7 +25,6 @@ package com.nirima.jenkins.webdav.impl;
 
 import com.nirima.jenkins.webdav.interfaces.IMimeTypeResolver;
 
-
 import javax.servlet.ServletContext;
 
 public class ServletContextMimeTypeResolver implements IMimeTypeResolver

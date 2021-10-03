@@ -25,10 +25,16 @@ package com.nirima.jenkins;
 
 import com.nirima.jenkins.action.ProjectRepositoryAction;
 import com.nirima.jenkins.action.RepositoryAction;
+
 import hudson.Extension;
-import hudson.model.*;
-import hudson.tasks.BuildWrapper;
+import hudson.model.AbstractBuild;
+import hudson.model.BuildableItemWithBuildWrappers;
+import hudson.model.Descriptor;
+import hudson.model.Run;
+import hudson.plugins.promoted_builds.PromotedBuildAction;
+
 import jenkins.model.Jenkins;
+
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.net.MalformedURLException;
@@ -36,7 +42,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import hudson.plugins.promoted_builds.PromotedBuildAction;
 
 public class SelectionTypeProject extends SelectionType {
     public String project;

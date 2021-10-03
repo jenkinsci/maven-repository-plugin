@@ -1,7 +1,6 @@
 package com.nirima.jenkins.action;
 
 import hudson.model.Action;
-import jenkins.model.Jenkins;
 
 import java.io.Serializable;
 import java.net.MalformedURLException;

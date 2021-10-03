@@ -27,16 +27,14 @@ import com.nirima.jenkins.repo.AbstractRepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryElement;
 import com.nirima.jenkins.repo.RootElement;
-import com.nirima.jenkins.repo.build.DirectoryRepositoryItem;
 import com.nirima.jenkins.repo.fs.FileDirectoryRepositoryItem;
-import com.nirima.jenkins.repo.fs.UrlRepositoryItem;
+
 import jenkins.model.Jenkins;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 
 public class ToolRepositoryRoot extends AbstractRepositoryDirectory implements RepositoryDirectory{
     public ToolRepositoryRoot(ToolsRepository toolsRepository, RootElement parent) {

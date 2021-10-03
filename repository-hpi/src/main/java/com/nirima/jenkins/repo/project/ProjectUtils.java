@@ -2,12 +2,11 @@ package com.nirima.jenkins.repo.project;
 
 import com.nirima.jenkins.repo.RepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryElement;
-import hudson.model.BuildableItem;
+
 import hudson.model.BuildableItemWithBuildWrappers;
-import hudson.model.Item;
 import hudson.model.Job;
+
 import jenkins.branch.MultiBranchProject;
-import jenkins.model.Jenkins;
 
 import java.util.Collection;
 import java.util.Objects;

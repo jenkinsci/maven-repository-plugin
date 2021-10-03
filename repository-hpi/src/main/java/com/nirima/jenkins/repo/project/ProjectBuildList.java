@@ -24,15 +24,15 @@
 
 package com.nirima.jenkins.repo.project;
 
-import hudson.model.BuildableItemWithBuildWrappers;
+import com.nirima.jenkins.repo.AbstractRepositoryDirectory;
+import com.nirima.jenkins.repo.RepositoryDirectory;
+import com.nirima.jenkins.repo.build.ProjectBuildRepositoryRoot;
+
 import hudson.model.Job;
 import hudson.model.Result;
 import hudson.model.Run;
 import hudson.plugins.git.util.BuildData;
-import com.nirima.jenkins.repo.AbstractRepositoryDirectory;
-import com.nirima.jenkins.repo.RepositoryDirectory;
-import com.nirima.jenkins.repo.RepositoryElement;
-import com.nirima.jenkins.repo.build.ProjectBuildRepositoryRoot;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

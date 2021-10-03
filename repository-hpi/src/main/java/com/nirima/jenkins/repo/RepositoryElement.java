@@ -23,7 +23,6 @@
  */
 package com.nirima.jenkins.repo;
 
-import com.nirima.jenkins.webdav.interfaces.IDavItem;
 
 public interface RepositoryElement {
 

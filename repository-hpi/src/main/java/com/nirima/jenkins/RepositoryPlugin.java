@@ -24,34 +24,43 @@
 package com.nirima.jenkins;
 
 import com.nirima.jenkins.bridge.BridgeRepository;
+import com.nirima.jenkins.repo.RepositoryContent;
+import com.nirima.jenkins.repo.RepositoryDirectory;
+import com.nirima.jenkins.repo.RepositoryElement;
 import com.nirima.jenkins.update.BuildUpdater;
 import com.nirima.jenkins.webdav.impl.MethodFactory;
 import com.nirima.jenkins.webdav.impl.ServletContextMimeTypeResolver;
 import com.nirima.jenkins.webdav.interfaces.IDavRepo;
 import com.nirima.jenkins.webdav.interfaces.IMethod;
 import com.nirima.jenkins.webdav.interfaces.IMethodFactory;
+
 import hudson.Extension;
 import hudson.Functions;
 import hudson.Plugin;
-import hudson.model.*;
+import hudson.model.Build;
+import hudson.model.Hudson;
+import hudson.model.Project;
+import hudson.model.RootAction;
+import hudson.plugins.git.util.BuildData;
 import hudson.util.IOUtils;
-import com.nirima.jenkins.repo.RepositoryContent;
-import com.nirima.jenkins.repo.RepositoryDirectory;
-import com.nirima.jenkins.repo.RepositoryElement;
+
 import jenkins.model.Jenkins;
+
 import org.kohsuke.stapler.Stapler;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-
-import hudson.plugins.git.util.BuildData;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 @Extension
 public class RepositoryPlugin extends Plugin implements RootAction, Serializable {

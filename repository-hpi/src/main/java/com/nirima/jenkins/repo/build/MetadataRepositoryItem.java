@@ -25,11 +25,12 @@ package com.nirima.jenkins.repo.build;
 
 import hudson.maven.MavenBuild;
 import hudson.maven.reporters.MavenArtifact;
-import hudson.model.AbstractBuild;
 import hudson.model.Run;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a {@code maven-metadata.xml} file.

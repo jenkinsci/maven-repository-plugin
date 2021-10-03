@@ -28,11 +28,10 @@ import com.nirima.jenkins.repo.RepositoryElement;
 import com.nirima.jenkins.repo.build.DirectoryRepositoryItem;
 import com.nirima.jenkins.repo.build.PopulateOnDemandDirectoryRepositoryItem;
 import com.nirima.jenkins.repo.build.ProjectBuildRepositoryRoot;
-import com.nirima.jenkins.repo.util.DirectoryPopulatorVisitor;
 import com.nirima.jenkins.repo.util.HudsonVisitor;
 import com.nirima.jenkins.repo.util.HudsonWalker;
 import com.nirima.jenkins.repo.util.IDirectoryPopulator;
-import hudson.maven.MavenBuild;
+
 import hudson.maven.MavenModuleSetBuild;
 import hudson.model.Result;
 import hudson.plugins.git.util.BuildData;

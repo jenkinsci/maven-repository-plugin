@@ -30,8 +30,6 @@ import com.nirima.jenkins.webdav.interfaces.IDavLock;
 import com.nirima.jenkins.webdav.interfaces.IDavRepo;
 
 import java.util.ArrayList;
-import java.util.Date;
-
 
 public abstract class BridgeRepositoryElement<T extends RepositoryElement> implements IDavItem {
     protected T element;

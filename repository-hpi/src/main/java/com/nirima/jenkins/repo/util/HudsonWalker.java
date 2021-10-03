@@ -26,7 +26,6 @@ package com.nirima.jenkins.repo.util;
 import com.nirima.jenkins.action.ProjectRepositoryAction;
 import com.nirima.jenkins.action.RepositoryAction;
 import com.nirima.jenkins.update.RepositoryArtifactRecord;
-
 import com.nirima.jenkins.update.RepositoryArtifactRecords;
 
 import hudson.maven.MavenBuild;
@@ -34,7 +33,10 @@ import hudson.maven.MavenModule;
 import hudson.maven.MavenModuleSetBuild;
 import hudson.maven.reporters.MavenArtifact;
 import hudson.maven.reporters.MavenArtifactRecord;
-import hudson.model.*;
+import hudson.model.AbstractProject;
+import hudson.model.BuildableItemWithBuildWrappers;
+import hudson.model.Hudson;
+import hudson.model.Run;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

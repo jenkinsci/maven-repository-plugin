@@ -24,13 +24,13 @@
 package com.nirima.jenkins.webdav.impl.methods;
 
 
-import javax.servlet.http.HttpServletResponse;
-
-import com.nirima.jenkins.webdav.interfaces.*;
+import com.nirima.jenkins.webdav.interfaces.IDavCollection;
 import com.nirima.jenkins.webdav.interfaces.IDavContext;
 import com.nirima.jenkins.webdav.interfaces.IDavItem;
 import com.nirima.jenkins.webdav.interfaces.IDavRepo;
 import com.nirima.jenkins.webdav.interfaces.MethodException;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author nigelm

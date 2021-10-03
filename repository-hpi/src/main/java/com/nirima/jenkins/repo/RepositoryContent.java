@@ -27,7 +27,6 @@ package com.nirima.jenkins.repo;
 import java.io.InputStream;
 import java.util.Date;
 
-
 public interface RepositoryContent extends RepositoryElement {
 
     public InputStream getContent() throws Exception;

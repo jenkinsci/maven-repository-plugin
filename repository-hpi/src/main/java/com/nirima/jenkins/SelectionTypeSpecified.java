@@ -2,16 +2,14 @@ package com.nirima.jenkins;
 
 import com.nirima.jenkins.action.PathInRepositoryAction;
 import com.nirima.jenkins.action.RepositoryAction;
+
 import hudson.Extension;
-import hudson.model.AbstractBuild;
 import hudson.model.Descriptor;
 import hudson.model.Run;
-import jenkins.model.Jenkins;
+
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-
 
 public class SelectionTypeSpecified extends SelectionType  {
     public String path;

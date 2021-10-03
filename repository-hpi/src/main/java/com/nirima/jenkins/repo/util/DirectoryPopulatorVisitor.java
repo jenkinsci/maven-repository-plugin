@@ -23,17 +23,14 @@
  */
 package com.nirima.jenkins.repo.util;
 
-import com.nirima.jenkins.repo.RepositoryContent;
 import com.nirima.jenkins.repo.build.ArtifactRepositoryItem;
 import com.nirima.jenkins.repo.build.DirectoryRepositoryItem;
 import com.nirima.jenkins.repo.build.MetadataChecksumRepositoryItem;
 import com.nirima.jenkins.repo.build.MetadataRepositoryItem;
+
 import hudson.maven.MavenBuild;
-import hudson.maven.MavenModule;
 import hudson.maven.MavenModuleSetBuild;
 import hudson.maven.reporters.MavenArtifact;
-import hudson.maven.reporters.MavenArtifactRecord;
-import hudson.model.AbstractBuild;
 import hudson.model.Run;
 
 import java.util.ArrayList;

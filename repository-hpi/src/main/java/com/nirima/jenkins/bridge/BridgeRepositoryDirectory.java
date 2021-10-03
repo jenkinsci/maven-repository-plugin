@@ -26,11 +26,14 @@ package com.nirima.jenkins.bridge;
 import com.nirima.jenkins.repo.RepositoryContent;
 import com.nirima.jenkins.repo.RepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryElement;
-import com.nirima.jenkins.webdav.interfaces.*;
+import com.nirima.jenkins.webdav.interfaces.IDavCollection;
+import com.nirima.jenkins.webdav.interfaces.IDavContext;
+import com.nirima.jenkins.webdav.interfaces.IDavFile;
+import com.nirima.jenkins.webdav.interfaces.IDavItem;
+import com.nirima.jenkins.webdav.interfaces.IDavRepo;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 
 public class BridgeRepositoryDirectory extends BridgeRepositoryElement<RepositoryDirectory> implements IDavCollection {
 

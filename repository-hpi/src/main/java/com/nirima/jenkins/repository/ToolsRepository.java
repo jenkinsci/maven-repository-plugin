@@ -26,8 +26,8 @@ package com.nirima.jenkins.repository;
 import com.nirima.jenkins.repo.RepositoryElement;
 import com.nirima.jenkins.repo.RepositoryExtensionPoint;
 import com.nirima.jenkins.repo.RootElement;
-import hudson.Extension;
 
+import hudson.Extension;
 
 @Extension
 public class ToolsRepository extends RepositoryExtensionPoint {

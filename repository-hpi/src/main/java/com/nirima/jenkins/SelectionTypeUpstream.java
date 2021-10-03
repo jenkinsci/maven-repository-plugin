@@ -25,14 +25,17 @@ package com.nirima.jenkins;
 
 import com.nirima.jenkins.action.ProjectRepositoryAction;
 import com.nirima.jenkins.action.RepositoryAction;
+
 import hudson.Extension;
-import hudson.model.*;
-import jenkins.model.Jenkins;
+import hudson.model.Cause;
+import hudson.model.Descriptor;
+import hudson.model.ParametersAction;
+import hudson.model.Run;
+import hudson.model.RunParameterValue;
+
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-
 
 public class SelectionTypeUpstream extends SelectionType {
     public String build;

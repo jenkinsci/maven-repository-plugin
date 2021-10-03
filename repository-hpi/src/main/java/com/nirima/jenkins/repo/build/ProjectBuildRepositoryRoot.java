@@ -23,26 +23,18 @@
  */
 package com.nirima.jenkins.repo.build;
 
-import com.nirima.jenkins.repo.util.DirectoryPopulatorVisitor;
-import com.nirima.jenkins.repo.util.HudsonWalker;
-import com.nirima.jenkins.repo.util.IDirectoryPopulator;
-import hudson.maven.MavenBuild;
-import hudson.maven.MavenModule;
-import hudson.maven.reporters.MavenArtifact;
-import hudson.maven.reporters.MavenArtifactRecord;
-import hudson.model.Run;
 import com.nirima.jenkins.repo.AbstractRepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryElement;
+import com.nirima.jenkins.repo.util.DirectoryPopulatorVisitor;
+import com.nirima.jenkins.repo.util.HudsonWalker;
+import com.nirima.jenkins.repo.util.IDirectoryPopulator;
 
-import java.io.File;
+import hudson.model.Run;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-
-import hudson.maven.MavenModuleSetBuild;
-
 
 public class ProjectBuildRepositoryRoot extends AbstractRepositoryDirectory implements RepositoryDirectory {
     private final String name;

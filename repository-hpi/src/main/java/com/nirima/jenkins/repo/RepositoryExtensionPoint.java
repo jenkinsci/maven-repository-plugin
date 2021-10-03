@@ -2,7 +2,9 @@ package com.nirima.jenkins.repo;
 
 import hudson.ExtensionList;
 import hudson.ExtensionPoint;
+
 import jenkins.model.Jenkins;
+
 /**
  * Extension point for repositories
  */

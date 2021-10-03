@@ -1,15 +1,14 @@
 package com.nirima.jenkins.update;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Serializable;
-
 import hudson.model.Job;
 import hudson.model.Run;
+
 import jenkins.branch.MultiBranchProject;
 import jenkins.model.Jenkins;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Store a reference to a project.

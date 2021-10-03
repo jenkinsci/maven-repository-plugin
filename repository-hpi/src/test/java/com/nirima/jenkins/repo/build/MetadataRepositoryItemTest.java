@@ -1,17 +1,18 @@
 package com.nirima.jenkins.repo.build;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+
 import hudson.maven.MavenBuild;
 import hudson.maven.MavenModule;
-import hudson.maven.reporters.MavenArtifact;
 import hudson.model.Run;
+
+import org.junit.Ignore;
+import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import org.junit.Ignore;
-import org.junit.Test;
 public class MetadataRepositoryItemTest {
     @Ignore
     @Test

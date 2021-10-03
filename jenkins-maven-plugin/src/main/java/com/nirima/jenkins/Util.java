@@ -24,6 +24,8 @@ package com.nirima.jenkins;
  * THE SOFTWARE.
  */
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.BufferedInputStream;
@@ -37,7 +39,6 @@ import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import edu.umd.cs.findbugs.annotations.NonNull;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 

@@ -24,12 +24,11 @@
 package com.nirima.jenkins.repo.build;
 
 import com.nirima.jenkins.repo.RepositoryContent;
+import com.nirima.jenkins.repo.RepositoryDirectory;
+
 import hudson.maven.MavenBuild;
 import hudson.maven.reporters.MavenArtifact;
-import hudson.model.AbstractBuild;
 import hudson.model.Run;
-import com.nirima.jenkins.repo.RepositoryDirectory;
-import com.nirima.jenkins.repo.RepositoryElement;
 
 import java.io.File;
 import java.io.FileInputStream;

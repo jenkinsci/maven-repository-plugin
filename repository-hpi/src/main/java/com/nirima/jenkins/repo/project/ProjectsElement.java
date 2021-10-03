@@ -24,19 +24,18 @@
 package com.nirima.jenkins.repo.project;
 
 import com.nirima.jenkins.repo.AbstractRepositoryDirectory;
-import hudson.maven.MavenModule;
-import hudson.model.BuildableItem;
-import hudson.model.BuildableItemWithBuildWrappers;
 import com.nirima.jenkins.repo.RepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryElement;
-import hudson.model.Hudson;
-import jenkins.branch.MultiBranchProject;
-import jenkins.model.Jenkins;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
+
+import hudson.model.BuildableItem;
+import hudson.model.Hudson;
+
+import jenkins.model.Jenkins;
+
 import java.util.Collection;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 

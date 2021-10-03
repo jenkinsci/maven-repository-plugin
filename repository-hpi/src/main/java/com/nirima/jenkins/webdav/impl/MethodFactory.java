@@ -30,8 +30,7 @@ import com.nirima.jenkins.webdav.interfaces.IMethodFactory;
 import com.nirima.jenkins.webdav.interfaces.MethodException;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;import java.lang.Character;import java.lang.Class;import java.lang.Exception;import java.lang.String;
-
+import javax.servlet.http.HttpServletResponse;
 
 public class MethodFactory implements IMethodFactory {
     public IMethod createMethod(HttpServletRequest request, HttpServletResponse response) throws MethodException {

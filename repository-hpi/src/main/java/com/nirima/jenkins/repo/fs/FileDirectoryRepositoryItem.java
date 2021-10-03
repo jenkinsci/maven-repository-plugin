@@ -24,17 +24,9 @@
 package com.nirima.jenkins.repo.fs;
 
 import com.nirima.jenkins.repo.RepositoryDirectory;
-import com.nirima.jenkins.repo.RepositoryElement;
 import com.nirima.jenkins.repo.build.DirectoryRepositoryItem;
 import com.nirima.jenkins.repo.build.PopulateOnDemandDirectoryRepositoryItem;
-import com.nirima.jenkins.repo.build.ProjectBuildRepositoryRoot;
-import com.nirima.jenkins.repo.util.HudsonVisitor;
-import com.nirima.jenkins.repo.util.HudsonWalker;
 import com.nirima.jenkins.repo.util.IDirectoryPopulator;
-import com.nirima.jenkins.repo.virtual.AllSHA1RepositoryRoot;
-import hudson.maven.MavenModuleSetBuild;
-import hudson.model.Result;
-import hudson.plugins.git.util.BuildData;
 
 import java.io.File;
 
