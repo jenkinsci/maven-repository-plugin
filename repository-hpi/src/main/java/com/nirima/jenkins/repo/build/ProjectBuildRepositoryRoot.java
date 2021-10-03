@@ -23,7 +23,6 @@
  */
 package com.nirima.jenkins.repo.build;
 
-import com.google.common.collect.Lists;
 import com.nirima.jenkins.repo.util.DirectoryPopulatorVisitor;
 import com.nirima.jenkins.repo.util.HudsonWalker;
 import com.nirima.jenkins.repo.util.IDirectoryPopulator;
@@ -64,18 +63,22 @@ public class ProjectBuildRepositoryRoot extends AbstractRepositoryDirectory impl
     }
 
     public Collection<? extends RepositoryElement> getChildren() {
-       return Lists.newArrayList(
+       List<RepositoryElement> result = new ArrayList<>();
+       result.add(
             new SimpleOnDemandItem(this,"repository", new IDirectoryPopulator() {
                 public void populate(DirectoryRepositoryItem directory) {
                     HudsonWalker.traverse(new DirectoryPopulatorVisitor(directory,false) ,item);
                 }
-            }),
+            })
+       );
+       result.add(
             new SimpleOnDemandItem(this,"repositoryChain", new IDirectoryPopulator() {
                 public void populate(DirectoryRepositoryItem directory) {
                     HudsonWalker.traverseChain(new DirectoryPopulatorVisitor(directory,false) ,item);
                 }
             })
        );
+       return result;
     }
 
     public String getDescription() {

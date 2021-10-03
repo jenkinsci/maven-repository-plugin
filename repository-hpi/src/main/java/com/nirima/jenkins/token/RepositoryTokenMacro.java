@@ -23,7 +23,6 @@
  */
 package com.nirima.jenkins.token;
 
-import com.google.common.collect.ListMultimap;
 import hudson.Extension;
 import hudson.model.*;
 import org.jenkinsci.plugins.tokenmacro.DataBoundTokenMacro;

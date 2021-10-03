@@ -1,10 +1,5 @@
 package com.nirima.jenkins.repo.project;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
-import com.google.common.collect.Iterators;
-import com.google.common.collect.Lists;
 import com.nirima.jenkins.repo.RepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryElement;
 import hudson.model.BuildableItem;
@@ -15,7 +10,9 @@ import jenkins.branch.MultiBranchProject;
 import jenkins.model.Jenkins;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Created by magnayn on 12/10/2015.
@@ -23,7 +20,7 @@ import java.util.List;
 public class ProjectUtils {
 
     public static Collection<RepositoryElement> getChildren(final RepositoryDirectory parent, final Collection<?> items) {
-        List<RepositoryElement> elements = Lists.newArrayList(Iterators.transform(items.iterator(),
+        return items.stream().map(
                 new Function<Object, RepositoryElement>() {
                     public RepositoryElement apply(Object from) {
                         if (from instanceof BuildableItemWithBuildWrappers) {
@@ -38,15 +35,10 @@ public class ProjectUtils {
 
                         return null;
                     }
-                }));
-
-        // Squash ones we couldn't sensibly find an element for.
-        return Collections2.filter(elements, new Predicate<RepositoryElement>() {
-            @Override
-            public boolean apply(RepositoryElement input) {
-                return input != null;
-            }
-        });
+                })
+                // Squash ones we couldn't sensibly find an element for.
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     public static String sanitizeName(String name) {

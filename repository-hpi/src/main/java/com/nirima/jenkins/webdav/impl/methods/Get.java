@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 package com.nirima.jenkins.webdav.impl.methods;
-import com.google.common.io.ByteStreams;
 import com.nirima.jenkins.webdav.interfaces.*;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -52,7 +51,7 @@ public class Get extends Head {
 
             long start = System.currentTimeMillis();
 
-            long bytes = ByteStreams.copy(is, os);
+            long bytes = IOUtils.copy(is, os);
             os.flush();
 
             long duration = System.currentTimeMillis() - start;

@@ -23,7 +23,6 @@
  */
 package com.nirima.jenkins.repo.util;
 
-import com.google.common.collect.Lists;
 import com.nirima.jenkins.repo.RepositoryElement;
 import com.nirima.jenkins.repo.build.ArtifactRepositoryItem;
 import hudson.maven.MavenBuild;

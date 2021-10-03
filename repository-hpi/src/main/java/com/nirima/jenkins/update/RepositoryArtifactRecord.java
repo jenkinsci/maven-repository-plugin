@@ -1,7 +1,5 @@
 package com.nirima.jenkins.update;
 
-import com.google.common.base.Objects;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -95,13 +93,19 @@ public class RepositoryArtifactRecord implements Serializable {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
-        .add("attachedArtifacts", attachedArtifacts)
-        .add("mainArtifact", mainArtifact)
-        .add("pomArtifact", pomArtifact)
-        .add("repositoryUrl", repositoryUrl)
-        .add("repositoryId", repositoryId)
-        .add("fileMap", fileMap)
-        .toString();
+    return "RepositoryArtifactRecord{"
+        + "attachedArtifacts={"
+        + attachedArtifacts
+        + "}, mainArtifact="
+        + mainArtifact
+        + ", pomArtifact="
+        + pomArtifact
+        + ", repositoryUrl="
+        + repositoryUrl
+        + ", repositoryId="
+        + repositoryId
+        + ", fileMap={"
+        + fileMap
+        + "}}";
   }
 }
