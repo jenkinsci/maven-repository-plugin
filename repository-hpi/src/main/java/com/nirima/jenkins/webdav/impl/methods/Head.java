@@ -123,7 +123,7 @@ public class Head extends MethodBase {
             if (cItem instanceof IDavFile) {
                 IDavFile file = (IDavFile) cItem;
 
-                writer.write("<TD>" + Long.toString(file.getContentLength()) + "</TD>");
+                writer.write("<TD>" + file.getContentLength() + "</TD>");
 
                 writer.write("<TD><A href='" +  file.getName() + "'>" + file.getName() + "</A></TD>");
                 if (file.isLocked(ctxt))

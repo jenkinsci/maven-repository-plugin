@@ -135,7 +135,7 @@ public class UpdateMojo
             }
 
             if (!jenkinsUrl.toString().endsWith("/")) {
-                jenkinsUrl = new URL(jenkinsUrl.toString() + "/");
+                jenkinsUrl = new URL(jenkinsUrl + "/");
             }
 
             URL url = new URL(jenkinsUrl, "plugin/repository/SHA1/" + status.sha1.name() + "/repository/");
