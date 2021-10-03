@@ -23,10 +23,6 @@
  */
 package com.nirima.jenkins.repo.util;
 
-import com.google.common.base.Optional;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-
 import com.nirima.jenkins.action.ProjectRepositoryAction;
 import com.nirima.jenkins.action.RepositoryAction;
 import com.nirima.jenkins.update.RepositoryArtifactRecord;
@@ -45,6 +41,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Created by IntelliJ IDEA.
@@ -115,11 +113,12 @@ public class HudsonWalker {
                 AbstractProject item = (AbstractProject)Hudson.getInstance().getItem(projectRepositoryAction.getProjectName());
 
 
-                Optional<Run> r = Iterables.tryFind(item.getBuilds(), new Predicate<Run>() {
-                    public boolean apply(Run run) {
+                List<? extends Run> runs = item.getBuilds();
+                Optional<Run> r = runs.stream().filter(new Predicate<Run>() {
+                    public boolean test(Run run) {
                         return run.getNumber() == projectRepositoryAction.getBuildNumber();
                     }
-                });
+                }).map(Run.class::cast).findAny();
 
                 if( r.isPresent() )
                     traverseChain(visitor, r.get());

@@ -23,7 +23,6 @@
  */
 package com.nirima.jenkins.repo.util;
 
-import com.google.common.base.Joiner;
 import com.nirima.jenkins.repo.RepositoryContent;
 import com.nirima.jenkins.repo.build.ArtifactRepositoryItem;
 import com.nirima.jenkins.repo.build.DirectoryRepositoryItem;
@@ -71,7 +70,7 @@ public class DirectoryPopulatorVisitor extends HudsonVisitor {
     }
 
     public String getDescription() {
-        return Joiner.on("->").join(listOfProjectNames);
+        return String.join("->", listOfProjectNames);
     }
 
     public @Override void visitArtifact(Run build, MavenArtifact artifact)

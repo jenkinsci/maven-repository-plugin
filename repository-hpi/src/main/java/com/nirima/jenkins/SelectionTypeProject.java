@@ -23,9 +23,6 @@
  */
 package com.nirima.jenkins;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Ordering;
 import com.nirima.jenkins.action.ProjectRepositoryAction;
 import com.nirima.jenkins.action.RepositoryAction;
 import hudson.Extension;
@@ -35,7 +32,10 @@ import jenkins.model.Jenkins;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.net.MalformedURLException;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 import hudson.plugins.promoted_builds.PromotedBuildAction;
 
 public class SelectionTypeProject extends SelectionType {
@@ -101,13 +101,13 @@ public class SelectionTypeProject extends SelectionType {
     }
 
     private BuildableItemWithBuildWrappers getProject(final String project) {
-        BuildableItemWithBuildWrappers item = Iterables.find(
-                Jenkins.getInstance().getAllItems(BuildableItemWithBuildWrappers.class),
+        BuildableItemWithBuildWrappers item =
+                Jenkins.getInstance().getAllItems(BuildableItemWithBuildWrappers.class).stream().filter(
                 new Predicate<BuildableItemWithBuildWrappers>() {
-                    public boolean apply(BuildableItemWithBuildWrappers buildableItemWithBuildWrappers) {
+                    public boolean test(BuildableItemWithBuildWrappers buildableItemWithBuildWrappers) {
                         return buildableItemWithBuildWrappers.getName().equals(project);
                     }
-                });
+                }).findFirst().get();
         return item;
     }
 
@@ -121,27 +121,20 @@ public class SelectionTypeProject extends SelectionType {
         BuildableItemWithBuildWrappers item = getProject(project);
 
 
-        Iterable<AbstractBuild> promotedItems = Iterables.filter(item.asProject().getBuilds(), new Predicate() {
-            public boolean apply(Object o) {
+        try
+        {
+            List<? extends Run> runs = item.asProject().getBuilds();
+            Comparator<AbstractBuild> ordering = Comparator.comparingInt(AbstractBuild::getNumber);
+            Optional<AbstractBuild> max = runs.stream().filter(new Predicate() {
+            public boolean test(Object o) {
                 AbstractBuild abstractBuild = (AbstractBuild)o;
 
                 PromotedBuildAction pba = abstractBuild.getAction(PromotedBuildAction.class);
                 return ( pba != null && pba.getPromotion(promoted) != null );
 
             }
-        });
-
-
-        Ordering<AbstractBuild> ordering = new Ordering<AbstractBuild>() {
-            @Override
-            public int compare(AbstractBuild l,  AbstractBuild r) {
-                return r.getNumber() - l.getNumber();
-            }
-        };
-
-        try
-        {
-            return ordering.max(promotedItems).getNumber();
+            }).max(ordering);
+            return max.get().getNumber();
         }
         catch(Exception ex)
         {

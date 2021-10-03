@@ -23,7 +23,6 @@
  */
 package com.nirima.jenkins.repo.project;
 
-import com.google.common.collect.Lists;
 import com.nirima.jenkins.repo.RepositoryElement;
 import com.nirima.jenkins.repo.build.ProjectBuildRepositoryRoot;
 import hudson.model.BuildableItemWithBuildWrappers;
@@ -31,6 +30,7 @@ import com.nirima.jenkins.repo.AbstractRepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryDirectory;
 import hudson.model.Job;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -51,10 +51,9 @@ public class ProjectElement extends AbstractRepositoryDirectory implements Repos
 
     public @Override Collection<? extends RepositoryElement> getChildren() {
 
-        List ar =  Lists.newArrayList(
-                new ProjectBuildList(this, item, ProjectBuildList.Type.SHA1),
-                new ProjectBuildList(this, item, ProjectBuildList.Type.Build)
-        );
+        List<RepositoryElement> ar = new ArrayList<>();
+        ar.add(new ProjectBuildList(this, item, ProjectBuildList.Type.SHA1));
+        ar.add(new ProjectBuildList(this, item, ProjectBuildList.Type.Build));
 
         if( item.getLastSuccessfulBuild() != null ) {
             ar.add( new ProjectBuildRepositoryRoot(this, item.getLastSuccessfulBuild(), "LastSuccessful") );

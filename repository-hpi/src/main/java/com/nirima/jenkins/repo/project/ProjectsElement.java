@@ -23,11 +23,6 @@
  */
 package com.nirima.jenkins.repo.project;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
-import com.google.common.collect.Iterators;
-import com.google.common.collect.Lists;
 import com.nirima.jenkins.repo.AbstractRepositoryDirectory;
 import hudson.maven.MavenModule;
 import hudson.model.BuildableItem;
@@ -42,6 +37,8 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class ProjectsElement extends AbstractRepositoryDirectory implements RepositoryDirectory {
     public ProjectsElement(RepositoryDirectory parent) {
@@ -57,9 +54,9 @@ public class ProjectsElement extends AbstractRepositoryDirectory implements Repo
     public Collection<RepositoryElement> getChildren() {
 
         return ProjectUtils.getChildren(this,
-                Collections2.filter(Jenkins.getInstance().getAllItems(BuildableItem.class), new Predicate<BuildableItem>() {
+                Jenkins.getInstance().getAllItems(BuildableItem.class).stream().filter(new Predicate<BuildableItem>() {
                     @Override
-                    public boolean apply(@Nullable BuildableItem input) {
+                    public boolean test(@Nullable BuildableItem input) {
                         if( input == null )
                             return false;
 
@@ -72,7 +69,7 @@ public class ProjectsElement extends AbstractRepositoryDirectory implements Repo
 
                         return false;
                     }
-                }));
+                }).collect(Collectors.toList()));
 
     }
 

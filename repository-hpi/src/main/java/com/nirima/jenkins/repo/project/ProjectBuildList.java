@@ -24,10 +24,6 @@
 
 package com.nirima.jenkins.repo.project;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 import hudson.model.BuildableItemWithBuildWrappers;
 import hudson.model.Job;
 import hudson.model.Result;
@@ -40,7 +36,13 @@ import com.nirima.jenkins.repo.build.ProjectBuildRepositoryRoot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class ProjectBuildList extends AbstractRepositoryDirectory implements RepositoryDirectory {
 
@@ -82,15 +84,13 @@ public class ProjectBuildList extends AbstractRepositoryDirectory implements Rep
                 }
             };
 
-            // Transform builds into items
-            Iterable<ProjectBuildRepositoryRoot> i = Iterables.transform(getJob().getBuilds(), fn);
-
-            // Remove NULL entries
-            return Lists.newArrayList(Iterables.filter(i, new Predicate<ProjectBuildRepositoryRoot>() {
-                public boolean apply(ProjectBuildRepositoryRoot projectBuildRepositoryRoot) {
-                    return projectBuildRepositoryRoot != null;
-                }
-            }));
+            List<? extends Run> runs = getJob().getBuilds();
+            return runs.stream()
+                    // Transform builds into items
+                    .map(fn)
+                    // Remove NULL entries
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
 
         } else {
 
