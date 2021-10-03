@@ -97,7 +97,7 @@
 
         <dependency>
             <groupId>org.jenkins-ci.main</groupId>
-            <version>3.8</version>
+            <version>3.13</version>
             <artifactId>maven-plugin</artifactId>
         </dependency>
 
