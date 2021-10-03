@@ -56,6 +56,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -263,10 +264,10 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
                 "        </td>\n" +
                 "      </tr>";
 
-        os.write(title.getBytes("UTF-8"));
+        os.write(title.getBytes(StandardCharsets.UTF_8));
 
         if (directory.getParent() != null) {
-            os.write(parent.getBytes("UTF-8"));
+            os.write(parent.getBytes(StandardCharsets.UTF_8));
         }
 
 
@@ -278,7 +279,7 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
                         "  </body>\n" +
                         "</html>";
 
-        os.write(footer.getBytes("UTF-8"));
+        os.write(footer.getBytes(StandardCharsets.UTF_8));
     }
 
     private void printDirEntry(OutputStream os, RepositoryElement item) throws IOException {
@@ -313,7 +314,7 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
                 "            </td>\n" +
                 "          </tr>";
 
-        os.write(entry.getBytes("UTF-8"));
+        os.write(entry.getBytes(StandardCharsets.UTF_8));
 
     }
 

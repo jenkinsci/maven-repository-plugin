@@ -34,7 +34,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -96,7 +96,7 @@ public class Util {
   @NonNull
   public static String getDigestOf(@NonNull String text) {
     try {
-      return getDigestOf(new ByteArrayInputStream(text.getBytes("UTF-8")));
+      return getDigestOf(new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8)));
     } catch (IOException e) {
       throw new Error(e);
     }
@@ -129,13 +129,11 @@ public class Util {
       // turn secretKey into 256 bit hash
       MessageDigest digest = MessageDigest.getInstance("SHA-256");
       digest.reset();
-      digest.update(s.getBytes("UTF-8"));
+      digest.update(s.getBytes(StandardCharsets.UTF_8));
 
       // Due to the stupid US export restriction JDK only ships 128bit version.
       return new SecretKeySpec(digest.digest(),0,128/8, "AES");
     } catch (NoSuchAlgorithmException e) {
-      throw new Error(e);
-    } catch (UnsupportedEncodingException e) {
       throw new Error(e);
     }
   }
