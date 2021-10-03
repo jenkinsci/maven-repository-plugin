@@ -61,12 +61,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,7 +138,7 @@ public class SimpleArtifactCopier implements IArtifactCopier {
         }
     }
 
-    protected void fetchFile(Artifact art, String path) throws IOException, URISyntaxException, UnsupportedEncodingException, UnknownHostException, HttpException, TransformerException, SAXException, ParserConfigurationException {
+    protected void fetchFile(Artifact art, String path) throws IOException, HttpException {
 
 
         BasicHttpEntityEnclosingRequest httpget = new BasicHttpEntityEnclosingRequest("GET", path);
@@ -193,7 +191,7 @@ public class SimpleArtifactCopier implements IArtifactCopier {
 
     }
 
-    protected List<String> fetchFiles(Artifact art) throws IOException, URISyntaxException, UnsupportedEncodingException, UnknownHostException, HttpException, TransformerException, SAXException, ParserConfigurationException {
+    protected List<String> fetchFiles(Artifact art) throws IOException, URISyntaxException, HttpException, TransformerException, SAXException, ParserConfigurationException {
 
         List<String> entries = null;
 
