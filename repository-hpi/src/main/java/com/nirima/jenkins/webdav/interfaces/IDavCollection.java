@@ -34,9 +34,6 @@ public interface IDavCollection extends IDavItem
 
     /**
      * Create a new folder (name)
-     * @param dctx
-     * @param name
-     * @return
      */
     IDavCollection createCollection(IDavContext dctx, String name);
 

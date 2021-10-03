@@ -122,7 +122,6 @@ public class ArtifactRepositoryItem implements RepositoryContent {
 
     /**
      * The path that the artifact believes it belongs to.
-     * @return
      */
     public String getArtifactPath() {
         return artifact.groupId.replace('.','/') + "/" + artifact.artifactId + '/' + artifact.version + "/" + getName();

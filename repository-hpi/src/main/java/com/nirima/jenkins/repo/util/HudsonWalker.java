@@ -59,8 +59,6 @@ public class HudsonWalker {
 
     /**
      * visit everything in order.
-     *
-     * @param visitor
      */
     public static void traverse(HudsonVisitor visitor) {
         for (BuildableItemWithBuildWrappers item : Jenkins.get().getAllItems(BuildableItemWithBuildWrappers.class)) {
@@ -96,8 +94,6 @@ public class HudsonWalker {
 
     /**
      * visit project chain, from current through parents.
-     * @param visitor
-     * @param run
      */
     public static void traverseChain(HudsonVisitor visitor, Run run)
     {
@@ -130,8 +126,6 @@ public class HudsonWalker {
 
     /**
      * visit a run
-     * @param visitor
-     * @param run
      */
     public static void traverse(HudsonVisitor visitor, Run run) {
         if (run instanceof MavenModuleSetBuild) {
