@@ -35,8 +35,9 @@ import hudson.maven.reporters.MavenArtifact;
 import hudson.maven.reporters.MavenArtifactRecord;
 import hudson.model.AbstractProject;
 import hudson.model.BuildableItemWithBuildWrappers;
-import hudson.model.Hudson;
 import hudson.model.Run;
+
+import jenkins.model.Jenkins;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,7 +64,7 @@ public class HudsonWalker {
      * @param visitor
      */
     public static void traverse(HudsonVisitor visitor) {
-        for (BuildableItemWithBuildWrappers item : Hudson.getInstance().getAllItems(BuildableItemWithBuildWrappers.class)) {
+        for (BuildableItemWithBuildWrappers item : Jenkins.get().getAllItems(BuildableItemWithBuildWrappers.class)) {
 
             visitor.visitProject(item);
 
@@ -78,7 +79,7 @@ public class HudsonWalker {
      * Visit projects and builds
      */
     public static void traverseProjectsAndBuilds(HudsonVisitor visitor ) {
-        for (BuildableItemWithBuildWrappers item : Hudson.getInstance().getAllItems(BuildableItemWithBuildWrappers.class)) {
+        for (BuildableItemWithBuildWrappers item : Jenkins.get().getAllItems(BuildableItemWithBuildWrappers.class)) {
 
             visitor.visitProject(item);
 
@@ -112,7 +113,7 @@ public class HudsonWalker {
             if( repositoryAction instanceof ProjectRepositoryAction ) {
                 final ProjectRepositoryAction projectRepositoryAction = (ProjectRepositoryAction) repositoryAction;
 
-                AbstractProject item = (AbstractProject)Hudson.getInstance().getItem(projectRepositoryAction.getProjectName());
+                AbstractProject item = (AbstractProject)Jenkins.get().getItem(projectRepositoryAction.getProjectName());
 
 
                 List<? extends Run> runs = item.getBuilds();

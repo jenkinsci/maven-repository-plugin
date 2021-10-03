@@ -13,7 +13,7 @@ public abstract class RepositoryExtensionPoint implements ExtensionPoint {
     private RepositoryElement repositoryRoot;
 
     public static ExtensionList<RepositoryExtensionPoint> all() {
-        return Jenkins.getInstance().getExtensionList(RepositoryExtensionPoint.class);
+        return Jenkins.get().getExtensionList(RepositoryExtensionPoint.class);
     }
 
     public abstract RepositoryElement getRepositoryRoot(RootElement rootElement);

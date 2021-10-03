@@ -53,7 +53,7 @@ public class ProjectsElement extends AbstractRepositoryDirectory implements Repo
     public Collection<RepositoryElement> getChildren() {
 
         return ProjectUtils.getChildren(this,
-                Jenkins.getInstance().getAllItems(BuildableItem.class).stream().filter(new Predicate<BuildableItem>() {
+                Jenkins.get().getAllItems(BuildableItem.class).stream().filter(new Predicate<BuildableItem>() {
                     @Override
                     public boolean test(@Nullable BuildableItem input) {
                         if( input == null )

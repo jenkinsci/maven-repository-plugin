@@ -38,14 +38,13 @@ import hudson.Extension;
 import hudson.Functions;
 import hudson.Plugin;
 import hudson.model.Build;
-import hudson.model.Hudson;
 import hudson.model.Project;
 import hudson.model.RootAction;
 import hudson.plugins.git.util.BuildData;
-import hudson.util.IOUtils;
 
 import jenkins.model.Jenkins;
 
+import org.apache.commons.io.IOUtils;
 import org.kohsuke.stapler.Stapler;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
@@ -90,7 +89,7 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
     @Override
     public void start() {
         // Unpack tools
-        File root = new File(Jenkins.getInstance().getRootDir(), "repositoryPlugin");
+        File root = new File(Jenkins.get().getRootDir(), "repositoryPlugin");
         root.mkdirs();
 
 
@@ -320,7 +319,7 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
 
 
     private Project getProject(String pathElement) {
-        for (Project project : Hudson.getInstance().getProjects()) {
+        for (Project project : Jenkins.get().getProjects()) {
             if (project.getName().equals(pathElement))
                 return project;
         }

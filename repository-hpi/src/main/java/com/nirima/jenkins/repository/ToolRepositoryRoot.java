@@ -46,7 +46,7 @@ public class ToolRepositoryRoot extends AbstractRepositoryDirectory implements R
     public Collection<? extends RepositoryElement> getChildren() {
         List<RepositoryElement> elements = new ArrayList<RepositoryElement>();
 
-        File file = new File(Jenkins.getInstance().getRootDir(), "repositoryPlugin/tools");
+        File file = new File(Jenkins.get().getRootDir(), "repositoryPlugin/tools");
 
         File[] listFiles = file.listFiles();
         if( listFiles != null) {

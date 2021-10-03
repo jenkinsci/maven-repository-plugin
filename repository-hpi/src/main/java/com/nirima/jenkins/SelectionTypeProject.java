@@ -107,7 +107,7 @@ public class SelectionTypeProject extends SelectionType {
 
     private BuildableItemWithBuildWrappers getProject(final String project) {
         BuildableItemWithBuildWrappers item =
-                Jenkins.getInstance().getAllItems(BuildableItemWithBuildWrappers.class).stream().filter(
+                Jenkins.get().getAllItems(BuildableItemWithBuildWrappers.class).stream().filter(
                 new Predicate<BuildableItemWithBuildWrappers>() {
                     public boolean test(BuildableItemWithBuildWrappers buildableItemWithBuildWrappers) {
                         return buildableItemWithBuildWrappers.getName().equals(project);
@@ -156,7 +156,7 @@ public class SelectionTypeProject extends SelectionType {
         }
 
         public List<BuildableItemWithBuildWrappers> getJobs() {
-            return Jenkins.getInstance().getAllItems(BuildableItemWithBuildWrappers.class);
+            return Jenkins.get().getAllItems(BuildableItemWithBuildWrappers.class);
         }
     }
 

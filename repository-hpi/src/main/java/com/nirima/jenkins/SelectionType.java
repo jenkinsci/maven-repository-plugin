@@ -41,7 +41,7 @@ public abstract class SelectionType implements Describable<SelectionType>, Seria
 
 
     public Descriptor getDescriptor() {
-        return Jenkins.getInstance().getDescriptorOrDie(getClass());
+        return Jenkins.get().getDescriptorOrDie(getClass());
     }
 
     public abstract RepositoryAction getAction(Run<?,?> build) throws MalformedURLException, RepositoryDoesNotExistException;
