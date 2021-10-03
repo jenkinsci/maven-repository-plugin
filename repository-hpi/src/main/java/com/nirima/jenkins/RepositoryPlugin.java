@@ -68,7 +68,7 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
     private static final Logger logger = LoggerFactory.getLogger(RepositoryPlugin.class);
 
     public String getIconFileName() {
-        return Functions.getResourcePath()+"/plugin/repository/static/icons/repository-32x32.png";
+        return Functions.getResourcePath()+"/plugin/repository/static/icons/repository.svg";
     }
 
     public String getDisplayName() {
