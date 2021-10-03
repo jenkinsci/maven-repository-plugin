@@ -24,21 +24,22 @@
 package com.nirima.jenkins.webdav.impl.methods;
 
 import com.nirima.jenkins.webdav.impl.DAVItemSerializer;
-import com.nirima.jenkins.webdav.interfaces.*;
+import com.nirima.jenkins.webdav.interfaces.IDavCollection;
+import com.nirima.jenkins.webdav.interfaces.IDavContext;
+import com.nirima.jenkins.webdav.interfaces.IDavFile;
+import com.nirima.jenkins.webdav.interfaces.IDavItem;
+import com.nirima.jenkins.webdav.interfaces.MethodException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import com.nirima.jenkins.webdav.interfaces.IDavContext;
-import com.nirima.jenkins.webdav.interfaces.IDavItem;
-import com.nirima.jenkins.webdav.interfaces.IDavRepo;
-import com.nirima.jenkins.webdav.interfaces.MethodException;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author nigelm
@@ -122,7 +123,7 @@ public class Head extends MethodBase {
             if (cItem instanceof IDavFile) {
                 IDavFile file = (IDavFile) cItem;
 
-                writer.write("<TD>" + Long.toString(file.getContentLength()) + "</TD>");
+                writer.write("<TD>" + file.getContentLength() + "</TD>");
 
                 writer.write("<TD><A href='" +  file.getName() + "'>" + file.getName() + "</A></TD>");
                 if (file.isLocked(ctxt))

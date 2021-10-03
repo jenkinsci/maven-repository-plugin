@@ -24,34 +24,43 @@
 package com.nirima.jenkins;
 
 import com.nirima.jenkins.bridge.BridgeRepository;
+import com.nirima.jenkins.repo.RepositoryContent;
+import com.nirima.jenkins.repo.RepositoryDirectory;
+import com.nirima.jenkins.repo.RepositoryElement;
 import com.nirima.jenkins.update.BuildUpdater;
 import com.nirima.jenkins.webdav.impl.MethodFactory;
 import com.nirima.jenkins.webdav.impl.ServletContextMimeTypeResolver;
 import com.nirima.jenkins.webdav.interfaces.IDavRepo;
 import com.nirima.jenkins.webdav.interfaces.IMethod;
 import com.nirima.jenkins.webdav.interfaces.IMethodFactory;
+
 import hudson.Extension;
 import hudson.Functions;
 import hudson.Plugin;
-import hudson.model.*;
-import hudson.util.IOUtils;
-import com.nirima.jenkins.repo.RepositoryContent;
-import com.nirima.jenkins.repo.RepositoryDirectory;
-import com.nirima.jenkins.repo.RepositoryElement;
+import hudson.model.Build;
+import hudson.model.Project;
+import hudson.model.RootAction;
+import hudson.plugins.git.util.BuildData;
+
 import jenkins.model.Jenkins;
+
+import org.apache.commons.io.IOUtils;
 import org.kohsuke.stapler.Stapler;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-
-import hudson.plugins.git.util.BuildData;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 @Extension
 public class RepositoryPlugin extends Plugin implements RootAction, Serializable {
@@ -81,7 +90,7 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
     @Override
     public void start() {
         // Unpack tools
-        File root = new File(Jenkins.getInstance().getRootDir(), "repositoryPlugin");
+        File root = new File(Jenkins.get().getRootDir(), "repositoryPlugin");
         root.mkdirs();
 
 
@@ -141,7 +150,7 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
           return;
         }
 
-        if (path.indexOf("..") != -1 || path.length() < 1) {
+        if (path.contains("..") || path.length() < 1) {
             // don't serve anything other than files in the sub directory.
             rsp.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
@@ -255,10 +264,10 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
                 "        </td>\n" +
                 "      </tr>";
 
-        os.write(title.getBytes("UTF-8"));
+        os.write(title.getBytes(StandardCharsets.UTF_8));
 
         if (directory.getParent() != null) {
-            os.write(parent.getBytes("UTF-8"));
+            os.write(parent.getBytes(StandardCharsets.UTF_8));
         }
 
 
@@ -270,7 +279,7 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
                         "  </body>\n" +
                         "</html>";
 
-        os.write(footer.getBytes("UTF-8"));
+        os.write(footer.getBytes(StandardCharsets.UTF_8));
     }
 
     private void printDirEntry(OutputStream os, RepositoryElement item) throws IOException {
@@ -305,13 +314,13 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
                 "            </td>\n" +
                 "          </tr>";
 
-        os.write(entry.getBytes("UTF-8"));
+        os.write(entry.getBytes(StandardCharsets.UTF_8));
 
     }
 
 
     private Project getProject(String pathElement) {
-        for (Project project : Hudson.getInstance().getProjects()) {
+        for (Project project : Jenkins.get().getProjects()) {
             if (project.getName().equals(pathElement))
                 return project;
         }

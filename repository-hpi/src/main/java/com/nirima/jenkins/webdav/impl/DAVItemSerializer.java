@@ -23,17 +23,23 @@
  */
 package com.nirima.jenkins.webdav.impl;
 
-import com.nirima.jenkins.webdav.interfaces.*;
+import com.nirima.jenkins.webdav.interfaces.IDavCollection;
+import com.nirima.jenkins.webdav.interfaces.IDavContext;
+import com.nirima.jenkins.webdav.interfaces.IDavFile;
+import com.nirima.jenkins.webdav.interfaces.IDavItem;
+import com.nirima.jenkins.webdav.interfaces.IDavLock;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 
 /**
  * @author nigel.magnay
@@ -52,7 +58,7 @@ public class DAVItemSerializer
     public void generateNamedProperties(IDavContext ctxt, IDavItem item, XMLStreamWriter response, ArrayList<DavProperty> properties)
             throws IOException, XMLStreamException
     {
-        ArrayList<DavProperty> missingProperties = new ArrayList<DavProperty>();
+        ArrayList<DavProperty> missingProperties = new ArrayList<>();
         response.writeStartElement("DAV:", "propstat");
         response.writeStartElement("DAV:", "prop");
         for (DavProperty prop : properties)

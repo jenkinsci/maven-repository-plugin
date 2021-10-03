@@ -27,17 +27,16 @@ package com.nirima.jenkins.repo;
 import java.io.InputStream;
 import java.util.Date;
 
-
 public interface RepositoryContent extends RepositoryElement {
 
-    public InputStream getContent() throws Exception;
+    InputStream getContent() throws Exception;
 
-    public Date getLastModified();
+    Date getLastModified();
 
-    public Long getSize();
+    Long getSize();
 
     /**
      * @return MIME type for the content.
      */
-    public String getContentType();
+    String getContentType();
 }

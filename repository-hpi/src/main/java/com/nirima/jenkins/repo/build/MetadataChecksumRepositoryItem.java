@@ -24,13 +24,11 @@
 package com.nirima.jenkins.repo.build;
 
 import com.nirima.jenkins.repo.RepositoryContent;
-import hudson.maven.MavenBuild;
-import hudson.maven.reporters.MavenArtifact;
+
 import org.apache.commons.io.IOUtils;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 /**

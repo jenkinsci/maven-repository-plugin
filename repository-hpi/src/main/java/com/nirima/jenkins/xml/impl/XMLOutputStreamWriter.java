@@ -25,13 +25,13 @@ package com.nirima.jenkins.xml.impl;
 
 import com.nirima.jenkins.xml.XmlSerializerFactory;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 
 /**
  * An XML Stream writer that provides access to the underlying output stream

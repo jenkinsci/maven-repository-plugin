@@ -23,16 +23,12 @@
  */
 package com.nirima.jenkins.repo;
 
-import com.nirima.jenkins.repo.project.ProjectBuildList;
 import com.nirima.jenkins.repo.project.ProjectsElement;
 import com.nirima.jenkins.repo.virtual.AllSHA1RepositoryRoot;
 import com.nirima.jenkins.repo.virtual.VirtualRepositoryRoot;
-import hudson.model.BuildableItemWithBuildWrappers;
-import org.apache.maven.model.Repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
 
 public class RootElement extends AbstractRepositoryDirectory implements RepositoryDirectory {
 
@@ -42,7 +38,7 @@ public class RootElement extends AbstractRepositoryDirectory implements Reposito
 
     public Collection<? extends RepositoryElement> getChildren() {
 
-        Collection<RepositoryElement> children = new ArrayList<RepositoryElement>();
+        Collection<RepositoryElement> children = new ArrayList<>();
 
         // Default set
         children.add( new ProjectsElement(this) );

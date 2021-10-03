@@ -36,7 +36,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-
 public class GitStatus {
 
     public static class Status {
@@ -78,7 +77,7 @@ public class GitStatus {
         }
     }
 
-    private Map<ObjectId, Status> fetched = new HashMap<ObjectId, Status>();
+    private Map<ObjectId, Status> fetched = new HashMap<>();
 
     public Status getStatus(File sourceDirectory) throws IOException {
 

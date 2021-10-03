@@ -2,18 +2,21 @@ package com.nirima.jenkins;
 
 import com.nirima.jenkins.bridge.BridgeRepository;
 import com.nirima.jenkins.repo.build.ProjectBuildRepositoryRoot;
+
 import hudson.Extension;
 import hudson.model.AbstractBuild;
 import hudson.model.Action;
 import hudson.model.TransientBuildActionFactory;
+
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 
-import javax.inject.Inject;
-import javax.servlet.ServletException;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+
+import javax.inject.Inject;
+import javax.servlet.ServletException;
 
 /**
  * Exposes a per-build repository under the URL of a build.

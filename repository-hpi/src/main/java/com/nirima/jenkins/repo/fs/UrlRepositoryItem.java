@@ -28,11 +28,10 @@ import com.nirima.jenkins.repo.RepositoryContent;
 import com.nirima.jenkins.repo.RepositoryDirectory;
 
 import java.io.File;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Date;
-
 
 public class UrlRepositoryItem extends AbstractRepositoryElement implements RepositoryContent {
     protected String name;

@@ -24,21 +24,24 @@
 package com.nirima.jenkins;
 
 import com.nirima.jenkins.action.RepositoryAction;
+
 import hudson.EnvVars;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.*;
-import hudson.tasks.BuildWrapper;
+import hudson.model.AbstractProject;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import hudson.tasks.BuildWrapperDescriptor;
+
 import jenkins.tasks.SimpleBuildWrapper;
+
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.export.ExportedBean;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.MalformedURLException;
-import java.util.Map;
 
 @ExportedBean
 public class RepositoryDefinitionProperty extends SimpleBuildWrapper implements Serializable {

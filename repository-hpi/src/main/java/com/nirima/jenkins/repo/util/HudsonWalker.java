@@ -26,7 +26,6 @@ package com.nirima.jenkins.repo.util;
 import com.nirima.jenkins.action.ProjectRepositoryAction;
 import com.nirima.jenkins.action.RepositoryAction;
 import com.nirima.jenkins.update.RepositoryArtifactRecord;
-
 import com.nirima.jenkins.update.RepositoryArtifactRecords;
 
 import hudson.maven.MavenBuild;
@@ -34,14 +33,17 @@ import hudson.maven.MavenModule;
 import hudson.maven.MavenModuleSetBuild;
 import hudson.maven.reporters.MavenArtifact;
 import hudson.maven.reporters.MavenArtifactRecord;
-import hudson.model.*;
+import hudson.model.AbstractProject;
+import hudson.model.BuildableItemWithBuildWrappers;
+import hudson.model.Run;
+
+import jenkins.model.Jenkins;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -57,11 +59,9 @@ public class HudsonWalker {
 
     /**
      * visit everything in order.
-     *
-     * @param visitor
      */
     public static void traverse(HudsonVisitor visitor) {
-        for (BuildableItemWithBuildWrappers item : Hudson.getInstance().getAllItems(BuildableItemWithBuildWrappers.class)) {
+        for (BuildableItemWithBuildWrappers item : Jenkins.get().getAllItems(BuildableItemWithBuildWrappers.class)) {
 
             visitor.visitProject(item);
 
@@ -76,7 +76,7 @@ public class HudsonWalker {
      * Visit projects and builds
      */
     public static void traverseProjectsAndBuilds(HudsonVisitor visitor ) {
-        for (BuildableItemWithBuildWrappers item : Hudson.getInstance().getAllItems(BuildableItemWithBuildWrappers.class)) {
+        for (BuildableItemWithBuildWrappers item : Jenkins.get().getAllItems(BuildableItemWithBuildWrappers.class)) {
 
             visitor.visitProject(item);
 
@@ -94,8 +94,6 @@ public class HudsonWalker {
 
     /**
      * visit project chain, from current through parents.
-     * @param visitor
-     * @param run
      */
     public static void traverseChain(HudsonVisitor visitor, Run run)
     {
@@ -110,18 +108,17 @@ public class HudsonWalker {
             if( repositoryAction instanceof ProjectRepositoryAction ) {
                 final ProjectRepositoryAction projectRepositoryAction = (ProjectRepositoryAction) repositoryAction;
 
-                AbstractProject item = (AbstractProject)Hudson.getInstance().getItem(projectRepositoryAction.getProjectName());
+                AbstractProject item = (AbstractProject)Jenkins.get().getItem(projectRepositoryAction.getProjectName());
 
 
                 List<? extends Run> runs = item.getBuilds();
-                Optional<Run> r = runs.stream().filter(new Predicate<Run>() {
+                runs.stream().filter(new Predicate<Run>() {
                     public boolean test(Run run) {
                         return run.getNumber() == projectRepositoryAction.getBuildNumber();
                     }
-                }).map(Run.class::cast).findAny();
-
-                if( r.isPresent() )
-                    traverseChain(visitor, r.get());
+                }).map(Run.class::cast)
+                        .findAny()
+                        .ifPresent(value -> traverseChain(visitor, value));
             }
         }
 
@@ -129,8 +126,6 @@ public class HudsonWalker {
 
     /**
      * visit a run
-     * @param visitor
-     * @param run
      */
     public static void traverse(HudsonVisitor visitor, Run run) {
         if (run instanceof MavenModuleSetBuild) {

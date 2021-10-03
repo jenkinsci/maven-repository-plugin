@@ -29,19 +29,22 @@ import com.nirima.jenkins.webdav.interfaces.IMethod;
 import com.nirima.jenkins.webdav.interfaces.MethodException;
 import com.nirima.jenkins.xml.XmlSerializerException;
 import com.nirima.jenkins.xml.XmlSerializerFactory;
-import org.apache.commons.io.IOUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.StringTokenizer;
 
 /**
  * @author nigelm TODO To change the template for this generated type comment go to Window - Preferences - Java - Code
@@ -143,7 +146,7 @@ public class MethodBase implements IMethod {
         }
 
         Reader r = m_request.getReader();
-        /** Debugging
+        /* Debugging
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         IOUtils.copy(r, baos);
@@ -153,7 +156,7 @@ public class MethodBase implements IMethod {
         ByteArrayInputStream bais = new ByteArrayInputStream( baos.toByteArray() );
 
         XMLStreamReader xpp = XmlSerializerFactory.createXMLStreamReader(bais);
-        **/
+        */
         XMLStreamReader xpp = XmlSerializerFactory.createXMLStreamReader(r);
         return xpp;
 
@@ -220,7 +223,7 @@ public class MethodBase implements IMethod {
 
     protected ArrayList<String> getETags(String name) {
         String value = m_request.getHeader(name);
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         if (value == null) return list;
 
         StringTokenizer tokenizer = new StringTokenizer(value, ",");

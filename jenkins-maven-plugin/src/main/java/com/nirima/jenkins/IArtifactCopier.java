@@ -26,5 +26,5 @@ package com.nirima.jenkins;
 import org.apache.maven.artifact.Artifact;
 
 public interface IArtifactCopier {
-    public void updateAll(Artifact art) throws Exception;
+    void updateAll(Artifact art) throws Exception;
 }

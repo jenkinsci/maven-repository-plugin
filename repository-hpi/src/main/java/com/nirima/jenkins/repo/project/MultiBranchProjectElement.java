@@ -26,17 +26,12 @@ package com.nirima.jenkins.repo.project;
 import com.nirima.jenkins.repo.AbstractRepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryElement;
-import com.nirima.jenkins.repo.build.ProjectBuildRepositoryRoot;
-import hudson.model.BuildableItem;
-import hudson.model.BuildableItemWithBuildWrappers;
+
 import hudson.model.Job;
+
 import jenkins.branch.MultiBranchProject;
-import jenkins.model.Jenkins;
 
 import java.util.Collection;
-import java.util.List;
-
-import static com.nirima.jenkins.repo.project.ProjectUtils.sanitizeName;
 
 public class MultiBranchProjectElement extends AbstractRepositoryDirectory implements RepositoryDirectory {
 
@@ -60,7 +55,7 @@ public class MultiBranchProjectElement extends AbstractRepositoryDirectory imple
     }
 
     public String getName() {
-       return sanitizeName(item.getName());
+       return ProjectUtils.sanitizeName(item.getName());
     }
 
     public String getDescription() {

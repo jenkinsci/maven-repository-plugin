@@ -16,7 +16,7 @@ public class PathInRepositoryAction extends RepositoryAction {
     @Override
     public URL getUrl() throws MalformedURLException {
 
-        URL url = new URL(Jenkins.getInstance().getRootUrl());
+        URL url = new URL(Jenkins.get().getRootUrl());
 
         url = new URL(url, "plugin/repository");
 

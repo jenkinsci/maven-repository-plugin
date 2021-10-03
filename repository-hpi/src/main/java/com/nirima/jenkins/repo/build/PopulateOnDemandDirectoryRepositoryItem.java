@@ -27,10 +27,8 @@ import com.nirima.jenkins.repo.RepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryElement;
 import com.nirima.jenkins.repo.util.IDirectoryPopulator;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public abstract class PopulateOnDemandDirectoryRepositoryItem extends DirectoryRepositoryItem {
 
@@ -44,7 +42,7 @@ public abstract class PopulateOnDemandDirectoryRepositoryItem extends DirectoryR
     @Override
     Map<String, RepositoryElement> getItems() {
         if (items == null) {
-            items = new HashMap<String, RepositoryElement>();
+            items = new HashMap<>();
             getPopulator().populate(this);
         }
         return items;

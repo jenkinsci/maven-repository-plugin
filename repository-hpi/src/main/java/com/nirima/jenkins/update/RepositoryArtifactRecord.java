@@ -1,28 +1,26 @@
 package com.nirima.jenkins.update;
 
+import hudson.maven.reporters.MavenArtifact;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import hudson.maven.reporters.MavenArtifact;
-
 /**
  * Created by magnayn on 01/11/15.
  */
 public class RepositoryArtifactRecord implements Serializable {
-  public List<MavenArtifact> attachedArtifacts = new ArrayList<MavenArtifact>();
+  public List<MavenArtifact> attachedArtifacts = new ArrayList<>();
   public MavenArtifact mainArtifact;
   public MavenArtifact pomArtifact;
   public String repositoryUrl;
   public String repositoryId;
-  public Map<MavenArtifact, File> fileMap = new HashMap<MavenArtifact, File>();
+  public Map<MavenArtifact, File> fileMap = new HashMap<>();
 
   public static RepositoryArtifactRecord parse(BufferedReader br) throws IOException {
     // Get the job
@@ -69,7 +67,7 @@ public class RepositoryArtifactRecord implements Serializable {
     String fileName = br.readLine();
     String md5sum = br.readLine();
 
-    List<MavenArtifact> result = new ArrayList<MavenArtifact>();
+    List<MavenArtifact> result = new ArrayList<>();
 
     MavenArtifact a = new MavenArtifact(groupId, artifactId, version, classifier, type, fileName, md5sum);
     fileMap.put(a, new File(file) );

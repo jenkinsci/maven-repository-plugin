@@ -22,12 +22,12 @@
  * THE SOFTWARE.
  */
 package com.nirima.jenkins.webdav.impl.methods;
-import com.nirima.jenkins.webdav.interfaces.*;
+import com.nirima.jenkins.webdav.interfaces.IDavFile;
+
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;

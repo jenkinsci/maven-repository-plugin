@@ -42,7 +42,7 @@ public class ProjectRepositoryAction extends RepositoryAction {
     }
 
     public URL getUrl() throws MalformedURLException {
-        URL url = new URL(Jenkins.getInstance().getRootUrl());
+        URL url = new URL(Jenkins.get().getRootUrl());
 
         url = new URL(url, "plugin/repository/project/");
 

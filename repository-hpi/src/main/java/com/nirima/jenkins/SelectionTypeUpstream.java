@@ -25,14 +25,17 @@ package com.nirima.jenkins;
 
 import com.nirima.jenkins.action.ProjectRepositoryAction;
 import com.nirima.jenkins.action.RepositoryAction;
+
 import hudson.Extension;
-import hudson.model.*;
-import jenkins.model.Jenkins;
+import hudson.model.Cause;
+import hudson.model.Descriptor;
+import hudson.model.ParametersAction;
+import hudson.model.Run;
+import hudson.model.RunParameterValue;
+
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-
 
 public class SelectionTypeUpstream extends SelectionType {
     public String build;
@@ -47,14 +50,14 @@ public class SelectionTypeUpstream extends SelectionType {
     }
 
     public void setBuild(String buildId) {
-        this.build = build;
+        this.build = buildId;
     }
 
     @Override
     public RepositoryAction getAction(Run<?,?> b) throws MalformedURLException, RepositoryDoesNotExistException {
 
         // What is the upstream project name?
-        Cause.UpstreamCause theCause = (Cause.UpstreamCause) b.getCause(Cause.UpstreamCause.class);
+        Cause.UpstreamCause theCause = b.getCause(Cause.UpstreamCause.class);
         String theProject;
         int    theBuild;
         if (theCause == null) {

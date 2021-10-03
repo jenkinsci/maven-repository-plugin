@@ -26,7 +26,6 @@ package com.nirima.jenkins.repo.fs;
 import com.nirima.jenkins.repo.AbstractRepositoryElement;
 import com.nirima.jenkins.repo.RepositoryContent;
 import com.nirima.jenkins.repo.RepositoryDirectory;
-import com.nirima.jenkins.repo.RepositoryElement;
 
 import java.io.File;
 import java.io.FileInputStream;

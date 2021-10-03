@@ -28,9 +28,9 @@ import com.nirima.jenkins.webdav.interfaces.IDavItem;
 import com.nirima.jenkins.webdav.interfaces.IDavRepo;
 import com.nirima.jenkins.webdav.interfaces.MethodException;
 
+import java.net.URLDecoder;
 
 import javax.servlet.http.HttpServletResponse;
-import java.net.URLDecoder;
 
 /**
  * @author nigelm

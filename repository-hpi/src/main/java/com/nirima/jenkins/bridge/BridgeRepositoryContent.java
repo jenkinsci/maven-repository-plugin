@@ -30,7 +30,6 @@ import com.nirima.jenkins.webdav.interfaces.IDavRepo;
 import java.io.InputStream;
 import java.util.Date;
 
-
 public class BridgeRepositoryContent extends BridgeRepositoryElement<RepositoryContent> implements IDavFile {
 
 

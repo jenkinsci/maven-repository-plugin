@@ -23,18 +23,16 @@
  */
 package com.nirima.jenkins.repo.project;
 
-import com.nirima.jenkins.repo.RepositoryElement;
-import com.nirima.jenkins.repo.build.ProjectBuildRepositoryRoot;
-import hudson.model.BuildableItemWithBuildWrappers;
 import com.nirima.jenkins.repo.AbstractRepositoryDirectory;
 import com.nirima.jenkins.repo.RepositoryDirectory;
+import com.nirima.jenkins.repo.RepositoryElement;
+import com.nirima.jenkins.repo.build.ProjectBuildRepositoryRoot;
+
 import hudson.model.Job;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import static com.nirima.jenkins.repo.project.ProjectUtils.sanitizeName;
 
 public class ProjectElement extends AbstractRepositoryDirectory implements RepositoryDirectory {
 
@@ -63,7 +61,7 @@ public class ProjectElement extends AbstractRepositoryDirectory implements Repos
     }
 
     public String getName() {
-       return sanitizeName(item.getName());
+       return ProjectUtils.sanitizeName(item.getName());
     }
 
     public String getDescription() {

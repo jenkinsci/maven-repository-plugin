@@ -135,7 +135,7 @@ public class UpdateMojo
             }
 
             if (!jenkinsUrl.toString().endsWith("/")) {
-                jenkinsUrl = new URL(jenkinsUrl.toString() + "/");
+                jenkinsUrl = new URL(jenkinsUrl + "/");
             }
 
             URL url = new URL(jenkinsUrl, "plugin/repository/SHA1/" + status.sha1.name() + "/repository/");
@@ -154,9 +154,7 @@ public class UpdateMojo
                 throw new MojoExecutionException("Could not update to latest version from url " + url);
             }
 
-        } catch (URISyntaxException e) {
-            throw new MojoExecutionException("URL error", e);
-        } catch (MalformedURLException e) {
+        } catch (URISyntaxException | MalformedURLException e) {
             throw new MojoExecutionException("URL error", e);
         } catch (IOException e) {
             throw new MojoExecutionException("Error fetching data", e);

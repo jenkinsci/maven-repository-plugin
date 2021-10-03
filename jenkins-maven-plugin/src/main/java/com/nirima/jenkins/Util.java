@@ -24,6 +24,8 @@ package com.nirima.jenkins;
  * THE SOFTWARE.
  */
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.BufferedInputStream;
@@ -32,12 +34,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import edu.umd.cs.findbugs.annotations.NonNull;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -72,12 +73,9 @@ public class Util {
       MessageDigest md5 = MessageDigest.getInstance("MD5");
 
       byte[] buffer = new byte[1024];
-      DigestInputStream in =new DigestInputStream(source,md5);
-      try {
+      try (DigestInputStream in = new DigestInputStream(source, md5)) {
         while(in.read(buffer)>=0)
           ; // simply discard the input
-      } finally {
-        in.close();
       }
       return toHexString(md5.digest());
     } catch (NoSuchAlgorithmException e) {
@@ -95,7 +93,7 @@ public class Util {
   @NonNull
   public static String getDigestOf(@NonNull String text) {
     try {
-      return getDigestOf(new ByteArrayInputStream(text.getBytes("UTF-8")));
+      return getDigestOf(new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8)));
     } catch (IOException e) {
       throw new Error(e);
     }
@@ -110,11 +108,8 @@ public class Util {
    */
   @NonNull
   public static String getDigestOf(@NonNull File file) throws IOException {
-    InputStream is = new FileInputStream(file);
-    try {
+    try (InputStream is = new FileInputStream(file)) {
       return getDigestOf(new BufferedInputStream(is));
-    } finally {
-      is.close();
     }
   }
 
@@ -128,13 +123,11 @@ public class Util {
       // turn secretKey into 256 bit hash
       MessageDigest digest = MessageDigest.getInstance("SHA-256");
       digest.reset();
-      digest.update(s.getBytes("UTF-8"));
+      digest.update(s.getBytes(StandardCharsets.UTF_8));
 
       // Due to the stupid US export restriction JDK only ships 128bit version.
       return new SecretKeySpec(digest.digest(),0,128/8, "AES");
     } catch (NoSuchAlgorithmException e) {
-      throw new Error(e);
-    } catch (UnsupportedEncodingException e) {
       throw new Error(e);
     }
   }

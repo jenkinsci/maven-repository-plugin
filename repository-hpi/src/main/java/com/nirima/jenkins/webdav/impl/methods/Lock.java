@@ -24,7 +24,12 @@
 package com.nirima.jenkins.webdav.impl.methods;
 
 import com.nirima.jenkins.webdav.impl.DAVItemSerializer;
-import com.nirima.jenkins.webdav.interfaces.*;
+import com.nirima.jenkins.webdav.interfaces.IDavCollection;
+import com.nirima.jenkins.webdav.interfaces.IDavContext;
+import com.nirima.jenkins.webdav.interfaces.IDavItem;
+import com.nirima.jenkins.webdav.interfaces.IDavLock;
+import com.nirima.jenkins.webdav.interfaces.IDavRepo;
+import com.nirima.jenkins.webdav.interfaces.MethodException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

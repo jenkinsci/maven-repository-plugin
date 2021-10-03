@@ -31,8 +31,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface IMethod
 {
-    public static final int WEBDAV_MULTI_STATUS = 207;
-    public static final int WEBDAV_LOCKED       = 423;
+    int WEBDAV_MULTI_STATUS = 207;
+    int WEBDAV_LOCKED       = 423;
 
     void init(HttpServletRequest req, HttpServletResponse resp, IDavContext ctx, IDavRepo repo, String root);
 

@@ -24,13 +24,18 @@
 package com.nirima.jenkins.token;
 
 import hudson.Extension;
-import hudson.model.*;
+import hudson.model.AbstractBuild;
+import hudson.model.Cause;
+import hudson.model.ParametersAction;
+import hudson.model.RunParameterValue;
+import hudson.model.TaskListener;
+
+import jenkins.model.Jenkins;
+
 import org.jenkinsci.plugins.tokenmacro.DataBoundTokenMacro;
 import org.jenkinsci.plugins.tokenmacro.MacroEvaluationException;
-import org.jenkinsci.plugins.tokenmacro.TokenMacro;
 
 import java.io.IOException;
-import java.util.Map;
 
 @Extension
 public class RepositoryTokenMacro extends DataBoundTokenMacro {
@@ -62,7 +67,7 @@ public class RepositoryTokenMacro extends DataBoundTokenMacro {
                 theBuild = "" + theCause.getUpstreamBuild();
             }
 
-            String root = Hudson.getInstance().getRootUrl() + "plugin/repository/project/" + theProject + "/Build/"
+            String root = Jenkins.get().getRootUrl() + "plugin/repository/project/" + theProject + "/Build/"
                     + theBuild;
 
             if (chain)

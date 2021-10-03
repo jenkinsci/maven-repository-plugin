@@ -1,5 +1,7 @@
 package com.nirima.jenkins.update;
 
+import hudson.model.Run;
+
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 
@@ -7,8 +9,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import hudson.model.Run;
 
 /**
  * Created by magnayn on 12/08/2015.
