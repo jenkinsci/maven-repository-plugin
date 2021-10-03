@@ -161,8 +161,7 @@ public class SimpleArtifactCopier implements IArtifactCopier {
 
         HttpEntity entity = response.getEntity();
         if (entity != null) {
-            InputStream instream = entity.getContent();
-            try {
+            try (InputStream instream = entity.getContent()) {
 
 
                 if (instream != null) {
@@ -180,8 +179,6 @@ public class SimpleArtifactCopier implements IArtifactCopier {
             } catch (IOException ex) {
                 conn.shutdown();
 
-            } finally {
-                instream.close();
             }
         }
         if (!connStrategy.keepAlive(response, context)) {
@@ -224,8 +221,7 @@ public class SimpleArtifactCopier implements IArtifactCopier {
 
         HttpEntity entity = response.getEntity();
         if (entity != null) {
-            InputStream instream = entity.getContent();
-            try {
+            try (InputStream instream = entity.getContent()) {
 
 
                 if (instream != null) {
@@ -239,8 +235,6 @@ public class SimpleArtifactCopier implements IArtifactCopier {
             } catch (IOException ex) {
                 conn.shutdown();
 
-            } finally {
-                instream.close();
             }
         }
         if (!connStrategy.keepAlive(response, context)) {

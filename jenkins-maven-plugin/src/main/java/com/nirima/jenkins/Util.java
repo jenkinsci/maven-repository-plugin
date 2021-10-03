@@ -73,12 +73,9 @@ public class Util {
       MessageDigest md5 = MessageDigest.getInstance("MD5");
 
       byte[] buffer = new byte[1024];
-      DigestInputStream in =new DigestInputStream(source,md5);
-      try {
+      try (DigestInputStream in = new DigestInputStream(source, md5)) {
         while(in.read(buffer)>=0)
           ; // simply discard the input
-      } finally {
-        in.close();
       }
       return toHexString(md5.digest());
     } catch (NoSuchAlgorithmException e) {
@@ -111,11 +108,8 @@ public class Util {
    */
   @NonNull
   public static String getDigestOf(@NonNull File file) throws IOException {
-    InputStream is = new FileInputStream(file);
-    try {
+    try (InputStream is = new FileInputStream(file)) {
       return getDigestOf(new BufferedInputStream(is));
-    } finally {
-      is.close();
     }
   }
 
