@@ -57,7 +57,7 @@ public class SelectionTypeUpstream extends SelectionType {
     public RepositoryAction getAction(Run<?,?> b) throws MalformedURLException, RepositoryDoesNotExistException {
 
         // What is the upstream project name?
-        Cause.UpstreamCause theCause = (Cause.UpstreamCause) b.getCause(Cause.UpstreamCause.class);
+        Cause.UpstreamCause theCause = b.getCause(Cause.UpstreamCause.class);
         String theProject;
         int    theBuild;
         if (theCause == null) {
