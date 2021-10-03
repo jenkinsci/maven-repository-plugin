@@ -44,7 +44,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -117,14 +116,13 @@ public class HudsonWalker {
 
 
                 List<? extends Run> runs = item.getBuilds();
-                Optional<Run> r = runs.stream().filter(new Predicate<Run>() {
+                runs.stream().filter(new Predicate<Run>() {
                     public boolean test(Run run) {
                         return run.getNumber() == projectRepositoryAction.getBuildNumber();
                     }
-                }).map(Run.class::cast).findAny();
-
-                if( r.isPresent() )
-                    traverseChain(visitor, r.get());
+                }).map(Run.class::cast)
+                        .findAny()
+                        .ifPresent(value -> traverseChain(visitor, value));
             }
         }
 
