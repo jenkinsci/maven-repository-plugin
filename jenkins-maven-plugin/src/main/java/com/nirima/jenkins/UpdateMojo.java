@@ -64,30 +64,30 @@ public class UpdateMojo
     /**
      * Location of the file.
      *
-     * @parameter expression="${project.build.directory}"
+     * @parameter property="project.build.directory"
      * @required
      */
     private File outputDirectory;
 
     /**
-     * @parameter expression="${project.ciManagement.url}"
+     * @parameter property="project.ciManagement.url"
      */
     private URL jenkinsUrl;
 
     /**
      * Any Object to print out.
      *
-     * @parameter expression="${jenkins.url}"
+     * @parameter property="jenkins.url"
      */
     private String url;
 
     /**
-     * @parameter expression="${basedir}"
+     * @parameter property="basedir"
      */
     private File sourceDirectory;
 
     /**
-     * @parameter expression="${project.artifactId}
+     * @parameter property="project.artifactId"
      */
     private String artifactId;
 

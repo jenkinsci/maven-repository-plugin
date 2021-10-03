@@ -38,8 +38,8 @@ import hudson.model.Hudson;
 import jenkins.branch.MultiBranchProject;
 import jenkins.model.Jenkins;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import java.util.Collection;
 import java.util.List;
 
@@ -53,7 +53,7 @@ public class ProjectsElement extends AbstractRepositoryDirectory implements Repo
         return "project";
     }
 
-    @Nonnull
+    @NonNull
     public Collection<RepositoryElement> getChildren() {
 
         return ProjectUtils.getChildren(this,

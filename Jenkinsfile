@@ -1,13 +1,13 @@
-node {
-  checkout scm;
+/*
+ * See the documentation for more options:
+ * https://github.com/jenkins-infra/pipeline-library/
+ */
+buildPlugin(useContainerAgent: true, configurations: [
+  // Test the long-term support end of the compatibility spectrum (i.e., the minimum required
+  // Jenkins version).
+  [ platform: 'linux', jdk: '8', jenkins: null ],
 
-  def jobName = "${env.JOB_NAME}"
-  def theJob = jobName.replace("/", " ");
-
-  def mvnHome = tool 'latest'
-  
-  /* Execute maven */
-  sh "${mvnHome}/bin/mvn clean install -Prepository -Drt.build.number=${env.BUILD_NUMBER} -DjenkinsProject='${theJob}' -DjenkinsBuild=${env.BUILD_NUMBER}";
-
-  step([$class: 'UpdaterPublisher']);
-}
+  // Test the common case (i.e., a recent LTS release) on both Linux and Windows.
+  [ platform: 'linux', jdk: '8', jenkins: '2.303.1' ],
+  [ platform: 'windows', jdk: '8', jenkins: '2.303.1' ],
+])

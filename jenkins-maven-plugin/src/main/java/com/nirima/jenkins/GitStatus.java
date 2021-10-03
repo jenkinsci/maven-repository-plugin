@@ -26,7 +26,7 @@ package com.nirima.jenkins;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.IndexDiff;
 import org.eclipse.jgit.lib.ObjectId;
-import org.eclipse.jgit.storage.file.FileRepository;
+import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.eclipse.jgit.treewalk.FileTreeIterator;
 
@@ -42,9 +42,9 @@ public class GitStatus {
     public static class Status {
         IndexDiff index;
         ObjectId sha1;
-        FileRepository repository;
+        Repository repository;
 
-        public Status(ObjectId id, FileRepository repository) throws IOException {
+        public Status(ObjectId id, Repository repository) throws IOException {
             sha1 = id;
             this.repository = repository;
 
@@ -82,7 +82,7 @@ public class GitStatus {
 
     public Status getStatus(File sourceDirectory) throws IOException {
 
-        final FileRepository repository = new FileRepositoryBuilder()
+        final Repository repository = new FileRepositoryBuilder()
                 .readEnvironment()
                 .findGitDir(sourceDirectory)
                 .build();

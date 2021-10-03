@@ -10,8 +10,10 @@ import hudson.model.Run;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import org.junit.Ignore;
 import org.junit.Test;
 public class MetadataRepositoryItemTest {
+    @Ignore
     @Test
     public void formatDateVersion_run_formatted() {
         //arrange

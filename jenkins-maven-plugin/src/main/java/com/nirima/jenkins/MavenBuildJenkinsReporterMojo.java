@@ -26,7 +26,7 @@ public class MavenBuildJenkinsReporterMojo  extends AbstractMojo {
   /**
    * Location of the file.
    *
-   * @parameter expression="${project.build.directory}"
+   * @parameter property="project.build.directory"
    * @required
    */
   private File outputDirectory;
@@ -38,17 +38,17 @@ public class MavenBuildJenkinsReporterMojo  extends AbstractMojo {
   private MavenProject project;
 
   /**
-   * @parameter expression="${project.ciManagement.url}"
+   * @parameter property="project.ciManagement.url"
    */
   private String jenkinsUrl;
 
   /**
-   * @parameter expression="${jenkinsProject}"
+   * @parameter property="jenkinsProject"
    */
   private String projectName;
 
   /**
-   * @parameter expression="${jenkinsBuild}"
+   * @parameter property="jenkinsBuild"
    */
   private String buildNumber;
 

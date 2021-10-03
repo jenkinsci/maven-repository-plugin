@@ -1,0 +1,140 @@
+= Maven Repository Server
+:toc:
+:toc-placement!:
+:toc-title:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+https://ci.jenkins.io/job/Plugins/job/maven-repository-plugin/job/master/[image:https://ci.jenkins.io/job/Plugins/job/maven-repository-plugin/job/master/badge/icon[Build Status]]
+https://github.com/jenkinsci/maven-repository-plugin/graphs/contributors[image:https://img.shields.io/github/contributors/jenkinsci/maven-repository-plugin.svg[Contributors]]
+https://plugins.jenkins.io/repository[image:https://img.shields.io/jenkins/plugin/v/repository.svg[Jenkins Plugin]]
+https://github.com/jenkinsci/maven-repository-plugin/releases/latest[image:https://img.shields.io/github/release/jenkinsci/maven-repository-plugin.svg?label=changelog[GitHub release]]
+https://plugins.jenkins.io/repository[image:https://img.shields.io/jenkins/plugin/i/repository.svg?color=blue[Jenkins Plugin Installs]]
+
+toc::[]
+
+== Introduction
+
+This plug-in exposes project builds as a Maven repository so the artifacts can be picked up by downstream builds or other systems.
+
+== Use in a Maven build pipeline
+
+Add the following to the Jenkins Maven `settings.xml` file:
+
+*settings.xml*
+
+[source,xml]
+----
+<profile>
+   <id>upstream</id>
+   <repositories>
+      <repository>
+         <id>upstream</id>
+         <url>${env.Jenkins.Repository}</url>
+         <releases>
+             <enabled>true</enabled>
+         </releases>
+         <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
+      </repository>
+    </repositories>
+ <pluginRepositories>
+    <pluginRepository>
+          <id>upstream</id>
+          <url>${env.Jenkins.Repository}</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+</profile>
+----
+
+=== Add Maven setting
+
+Add `-Pupstream` to your Maven "goals and options" (e.g., `-Pupstream clean install`) to turn on the above profile.
+
+=== Check the "Define Upstream Maven Repository" checkbox item
+
+Set a specific project, or the project that caused this build.
+
+== Description
+
+After installation, archived build artifacts of your Maven jobs will be available as a Maven repository so that other tools or builds that understand Maven repositories can use them directly, without having to upload them to a separate server first.
+
+=== By Build
+
+....
+http://jenkins-server:port/plugin/repository/project/projectName/Build/buildNumber/repository
+....
+
+Thus an artifact from build 4 of project `helloworld` might be
+
+....
+http://jenkins-server:port/plugin/repository/project/helloworld/Build/4/repository/org/example/helloworld/1.0-SNAPSHOT/helloworld-1.0-SNAPSHOT.pom
+....
+
+=== By Git SHA1
+
+Alternatively, if your build was executed from source stored in a Git repository, you can access it via the SHA1 ID.
+The plugin will return the most recent successful build artifacts.
+
+....
+http://jenkins-server:port/plugin/repository/project/projectName/SHA1/buildSHA1/repository
+....
+
+Thus an artifact from build 4 of project `helloworld` might be
+
+....
+http://jenkins-server:port/plugin/repository/project/helloworld/SHA1/f9a6ccb7fa31b6d88cd4ce0554d46aa4f3850425/repository/org/example/helloworld/1.0-SNAPSHOT/helloworld-1.0-SNAPSHOT.pom
+....
+
+This feature could be used (with an appropriate script) to allow a developer who checks out a particular branch, to automatically sync his local repository with the correctly built artifacts stored in Jenkins.
+You can access the build without the project name:
+
+....
+http://jenkins-server:port/plugin/repository/SHA1/buildSha1
+....
+
+Therefore you could sync your repository with something like the following:
+
+[source,shell]
+----
+wget -e robots=off -P ~/.m2/repository -np -r -nH --cut-dirs=4 http://jenkins:8080/plugin/repository/SHA1/`git rev-parse HEAD`/
+----
+
+=== All Builds
+
+A repository containing all build artifacts is available at
+
+....
+http://jenkins-server:port/plugin/repository/everything
+....
+
+=== Chained Builds
+
+The above examples return repositories containing just the artifacts from the particular build.
+You can get access to a repository that also contains any upstream resources by substituting `repository` for `repositoryChain`, e.g.:
+
+....
+http://jenkins-server:port/plugin/repository/project/projectName/Build/buildNumber/repositoryChain
+....
+
+Care is needed due to aliasing of artifacts if you have multiple projects generating artifacts with the same coordinate with the `everything` and `repositoryChain` modes.
+
+== Issues
+
+Report issues and enhancements in the https://issues.jenkins.io/[Jenkins issue tracker]. Use the `maven-repository-plugin` component in the `JENKINS` project.
+
+== Contributing
+
+Refer to our https://github.com/jenkinsci/.github/blob/master/CONTRIBUTING.md[contribution guidelines].

@@ -92,7 +92,7 @@ public class RepositoryPlugin extends Plugin implements RootAction, Serializable
             file = file.substring(5,file.indexOf('!'));
 
         try {
-            logger.info("Expanding " + file + "into " + root);
+            logger.info("Expanding " + file + " into " + root);
             expand(new File(file), root, "tools");
         }
         catch(Exception ex) {
