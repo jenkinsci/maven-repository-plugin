@@ -146,7 +146,7 @@ public class MethodBase implements IMethod {
         }
 
         Reader r = m_request.getReader();
-        /** Debugging
+        /* Debugging
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         IOUtils.copy(r, baos);
@@ -156,7 +156,7 @@ public class MethodBase implements IMethod {
         ByteArrayInputStream bais = new ByteArrayInputStream( baos.toByteArray() );
 
         XMLStreamReader xpp = XmlSerializerFactory.createXMLStreamReader(bais);
-        **/
+        */
         XMLStreamReader xpp = XmlSerializerFactory.createXMLStreamReader(r);
         return xpp;
 
