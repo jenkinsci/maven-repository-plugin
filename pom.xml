@@ -1,15 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>1.642.4</version>
+        <version>4.27</version>
+        <relativePath />
     </parent>
 
     <groupId>com.nirima.jenkins.repository</groupId>
     <artifactId>pom</artifactId>
     <name>Jenkins Maven Repository Server : Project POM</name>
     <description>Repository Project POM</description>
+    <url>https://github.com/jenkinsci/maven-repository-plugin</url>
 
     <version>1.4-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -26,13 +29,13 @@
                     <plugin>
                         <groupId>com.nirima.jenkins.repository</groupId>
                         <artifactId>jenkins-maven-plugin</artifactId>
-                        <version>${pom.version}</version>
+                        <version>${project.version}</version>
                         <executions>
                             <execution>
-                            <goals>
-                                <goal>report-artifacts</goal>
-                            </goals>
-                        </execution>
+                                <goals>
+                                    <goal>report-artifacts</goal>
+                                </goals>
+                            </execution>
                         </executions>
                     </plugin>
                 </plugins>
@@ -54,70 +57,40 @@
     </developers>
 
     <properties>
-        <hpi.plugin.version>1.113</hpi.plugin.version>
-        <jenkins.version>${project.parent.version}</jenkins.version>
-        <jdk.debug>true</jdk.debug>
-        <jdk.optimize>false</jdk.optimize>
-        <jdk.source>1.7</jdk.source>
-        <jdk.target>1.7</jdk.target>
+        <jenkins.version>2.222.4</jenkins.version>
+        <java.level>8</java.level>
+        <gitHubRepo>jenkinsci/maven-repository-plugin</gitHubRepo>
     </properties>
-    <build>
-        <pluginManagement>
-            <plugins>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
-                    <configuration>
-                        <source>${jdk.source}</source>
-                        <target>${jdk.target}</target>
-                        <debug>${jdk.debug}</debug>
-                        <optimize>${jdk.optimize}</optimize>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.jenkins-ci.tools</groupId>
-                    <artifactId>maven-hpi-plugin</artifactId>
-                    <version>${hpi.plugin.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
     <licenses>
-       <license>
-          <name>MIT</name>
-       </license>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
     </licenses>
     <scm>
-        <connection>scm:git:git://github.com/magnayn/Jenkins-Repository.git</connection>
-        <developerConnection>scm:git:git@github.com:magnayn/Jenkins-Repository.git</developerConnection>
+        <connection>scm:git:git://github.com/${gitHubRepo}.git</connection>
+        <developerConnection>scm:git:git@github.com:${gitHubRepo}.git</developerConnection>
+        <url>https://github.com/${gitHubRepo}</url>
+        <tag>HEAD</tag>
     </scm>
     <modules>
-        <module>repository-hpi</module>
         <module>jenkins-maven-plugin</module>
+        <module>repository-hpi</module>
     </modules>
 
-   <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
-   <repositories>
-       <repository>
-           <id>repo.jenkins-ci.org</id>
-	   <url>http://repo.jenkins-ci.org/public/</url>
-       </repository>
-   </repositories>
-
-   <pluginRepositories>
-       <pluginRepository>
-            <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
-       </pluginRepository>
-   </pluginRepositories>
-
-    <distributionManagement>
+    <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
+    <repositories>
         <repository>
-            <id>maven.jenkins-ci.org</id>
-            <url>http://maven.jenkins-ci.org:8081/content/repositories/releases/</url>
+            <id>repo.jenkins-ci.org</id>
+            <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
-    </distributionManagement>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repo.jenkins-ci.org</id>
+            <url>https://repo.jenkins-ci.org/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

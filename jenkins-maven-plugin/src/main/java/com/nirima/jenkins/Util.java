@@ -37,7 +37,7 @@ import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import javax.annotation.Nonnull;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -66,8 +66,8 @@ public class Util {
    *      32-char wide string
    * @see DigestUtils#md5Hex(InputStream)
    */
-  @Nonnull
-  public static String getDigestOf(@Nonnull InputStream source) throws IOException {
+  @NonNull
+  public static String getDigestOf(@NonNull InputStream source) throws IOException {
     try {
       MessageDigest md5 = MessageDigest.getInstance("MD5");
 
@@ -92,8 +92,8 @@ public class Util {
         */
   }
 
-  @Nonnull
-  public static String getDigestOf(@Nonnull String text) {
+  @NonNull
+  public static String getDigestOf(@NonNull String text) {
     try {
       return getDigestOf(new ByteArrayInputStream(text.getBytes("UTF-8")));
     } catch (IOException e) {
@@ -108,8 +108,8 @@ public class Util {
    * @throws IOException in case reading fails
    * @since 1.525
    */
-  @Nonnull
-  public static String getDigestOf(@Nonnull File file) throws IOException {
+  @NonNull
+  public static String getDigestOf(@NonNull File file) throws IOException {
     InputStream is = new FileInputStream(file);
     try {
       return getDigestOf(new BufferedInputStream(is));
@@ -122,8 +122,8 @@ public class Util {
    * Converts a string into 128-bit AES key.
    * @since 1.308
    */
-  @Nonnull
-  public static SecretKey toAes128Key(@Nonnull String s) {
+  @NonNull
+  public static SecretKey toAes128Key(@NonNull String s) {
     try {
       // turn secretKey into 256 bit hash
       MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -139,8 +139,8 @@ public class Util {
     }
   }
 
-  @Nonnull
-  public static String toHexString(@Nonnull byte[] data, int start, int len) {
+  @NonNull
+  public static String toHexString(@NonNull byte[] data, int start, int len) {
     StringBuilder buf = new StringBuilder();
     for( int i=0; i<len; i++ ) {
       int b = data[start+i]&0xFF;
@@ -150,13 +150,13 @@ public class Util {
     return buf.toString();
   }
 
-  @Nonnull
-  public static String toHexString(@Nonnull byte[] bytes) {
+  @NonNull
+  public static String toHexString(@NonNull byte[] bytes) {
     return toHexString(bytes,0,bytes.length);
   }
 
-  @Nonnull
-  public static byte[] fromHexString(@Nonnull String data) {
+  @NonNull
+  public static byte[] fromHexString(@NonNull String data) {
     byte[] r = new byte[data.length() / 2];
     for (int i = 0; i < data.length(); i += 2)
       r[i / 2] = (byte) Integer.parseInt(data.substring(i, i + 2), 16);
