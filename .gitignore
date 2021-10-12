@@ -3,3 +3,4 @@ work
 *.iml
 pom.xml.releaseBackup
 release.properties
+.idea/
