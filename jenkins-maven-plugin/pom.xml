@@ -22,7 +22,7 @@
 
   <properties>
     <java.level>8</java.level>
-    <mavenVersion>3.5.4</mavenVersion>
+    <mavenVersion>3.8.3</mavenVersion>
     <spotbugs.skip>true</spotbugs.skip>
   </properties>
 
@@ -66,6 +66,16 @@
       <version>4.5.13</version>
     </dependency>
   </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.codehaus.plexus</groupId>
+        <artifactId>plexus-utils</artifactId>
+        <version>3.4.1</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <plugins>
