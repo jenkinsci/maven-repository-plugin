@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.jenkins-ci</groupId>
     <artifactId>jenkins</artifactId>
-    <version>1.67</version>
+    <version>1.69</version>
     <relativePath />
   </parent>
 
@@ -22,7 +22,7 @@
 
   <properties>
     <java.level>8</java.level>
-    <mavenVersion>3.8.3</mavenVersion>
+    <mavenVersion>3.8.4</mavenVersion>
     <spotbugs.skip>true</spotbugs.skip>
   </properties>
 
