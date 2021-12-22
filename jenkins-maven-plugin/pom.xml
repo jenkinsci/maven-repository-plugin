@@ -22,7 +22,7 @@
 
   <properties>
     <java.level>8</java.level>
-    <mavenVersion>3.8.3</mavenVersion>
+    <mavenVersion>3.8.4</mavenVersion>
     <spotbugs.skip>true</spotbugs.skip>
   </properties>
 
@@ -45,7 +45,7 @@
     <dependency>
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
-      <version>4.5.0</version>
+      <version>4.5.2</version>
       <optional>true</optional>
     </dependency>
     <dependency>
