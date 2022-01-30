@@ -77,8 +77,8 @@
             </dependency>
             <dependency>
                 <groupId>io.jenkins.tools.bom</groupId>
-                <artifactId>bom-2.235.x</artifactId>
-                <version>918.vae501d2cdc99</version>
+                <artifactId>bom-2.289.x</artifactId>
+                <version>1135.va_4eeca_ea_21c1</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -97,8 +97,14 @@
 
         <dependency>
             <groupId>org.jenkins-ci.main</groupId>
-            <version>3.8</version>
+            <version>3.16</version>
             <artifactId>maven-plugin</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jenkins-ci</groupId>
+                    <artifactId>symbol-annotation</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
