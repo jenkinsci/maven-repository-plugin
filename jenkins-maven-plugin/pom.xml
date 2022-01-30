@@ -18,7 +18,7 @@
   <!-- Unusually, we fix this version to be 1.4-SNAPSHOT, so that
        Builds can use newer versions of the plugin without having to
        update their versions all the tiem -->
-  <version>1.10-SNAPSHOT</version>
+  <version>1.10</version>
 
   <properties>
     <java.level>8</java.level>
@@ -122,4 +122,8 @@
       <url>https://repo.jenkins-ci.org/public/</url>
     </pluginRepository>
   </pluginRepositories>
+
+  <scm>
+    <tag>pom-1.10</tag>
+  </scm>
 </project>
