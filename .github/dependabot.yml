@@ -6,6 +6,10 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      # Starting with version 6.0.0, this library requires Java 11
+      - dependency-name: "org.eclipse.jgit:org.eclipse.jgit"
+        versions: [">=6.0.0"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
