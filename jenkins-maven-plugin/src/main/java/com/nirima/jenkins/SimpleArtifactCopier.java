@@ -24,8 +24,6 @@
 package com.nirima.jenkins;
 
 
-import com.sun.org.apache.xpath.internal.XPathAPI;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpException;
@@ -71,7 +69,10 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 public class SimpleArtifactCopier implements IArtifactCopier {
 
@@ -130,7 +131,7 @@ public class SimpleArtifactCopier implements IArtifactCopier {
         connStrategy = new DefaultConnectionReuseStrategy();
     }
 
-    public void updateAll(Artifact art) throws IOException, HttpException, URISyntaxException, ParserConfigurationException, SAXException, TransformerException {
+    public void updateAll(Artifact art) throws IOException, HttpException, URISyntaxException, ParserConfigurationException, SAXException, XPathExpressionException {
 
         List<String> items = fetchFiles(art);
         for (String item : items) {
@@ -188,7 +189,7 @@ public class SimpleArtifactCopier implements IArtifactCopier {
 
     }
 
-    protected List<String> fetchFiles(Artifact art) throws IOException, URISyntaxException, HttpException, TransformerException, SAXException, ParserConfigurationException {
+    protected List<String> fetchFiles(Artifact art) throws IOException, URISyntaxException, HttpException, XPathExpressionException, SAXException, ParserConfigurationException {
 
         List<String> entries = null;
 
@@ -247,7 +248,7 @@ public class SimpleArtifactCopier implements IArtifactCopier {
         return entries;
     }
 
-    private List<String> getEntries(byte[] string) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+    private List<String> getEntries(byte[] string) throws ParserConfigurationException, IOException, SAXException, XPathExpressionException {
 
         List<String> items = new ArrayList<>();
 
@@ -259,13 +260,14 @@ public class SimpleArtifactCopier implements IArtifactCopier {
         //parse using builder to get DOM representation of the XML file
         Document dom = db.parse(new ByteArrayInputStream(string));
 
-        NodeList l = XPathAPI.selectNodeList(dom, "//a:response");
+        XPath xpath = XPathFactory.newInstance().newXPath();
+        NodeList l = (NodeList) xpath.evaluate("//a:response", dom, XPathConstants.NODESET);
 
         for (int i = 0; i < l.getLength(); i++) {
             Node n = l.item(i);
 
-            Node ref = XPathAPI.selectSingleNode(n, "a:href");
-            Node type = XPathAPI.selectSingleNode(n, "a:propstat/a:prop/a:resourcetype").getFirstChild();
+            Node ref = ((NodeList) xpath.evaluate("a:href", n, XPathConstants.NODESET)).item(0);
+            Node type = ((NodeList) xpath.evaluate("a:propstat/a:prop/a:resourcetype", n, XPathConstants.NODESET)).item(0).getFirstChild();
             //System.out.println(ref.getTextContent());
 //
 //            System.out.println(type);
