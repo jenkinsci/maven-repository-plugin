@@ -1,0 +1,4 @@
+<?jelly escape-by-default='true'?>
+<div>
+    Exposes project builds as a Maven repository so the artifacts can be picked up by downstream builds or other systems
+</div>

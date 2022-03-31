@@ -10,9 +10,6 @@
     <groupId>jenkins</groupId>
     <artifactId>repository</artifactId>
     <name>Jenkins Maven Repository Server Plugin</name>
-    <description>This plug-in exposes project builds as a maven repository so the artifacts can be picked up by
-        downstream builds or other systems.
-    </description>
     <version>1.11-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
